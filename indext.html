@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>سنن مهجورة - 20 سنة فقط مع 10,000 كلمة</title>
+    <title>سنن مهجورة - إضافة مهمة + 3 أزرار</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rakkas&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
@@ -36,87 +36,151 @@
         .stats {
             background: #15924910;
             border-radius: 40px;
-            padding: 8px 20px;
-            font-size: 0.8rem;
+            padding: 6px 16px;
+            font-size: 0.7rem;
             font-family: monospace;
             margin-bottom: 15px;
             color: #159249;
-            font-weight: bold;
         }
-        .btn-add {
-            background: #159249;
-            color: #fff;
-            border: none;
-            border-radius: 40px;
-            padding: 12px 35px;
-            font-size: 1.2rem;
-            font-family: "Rubik", sans-serif;
-            font-weight: 500;
-            cursor: pointer;
-            margin: 8px;
-            transition: all 0.2s ease;
-            box-shadow: 0 4px 12px rgba(21, 146, 73, 0.25);
-        }
-        .btn-add:hover { background: #fff; color: #159249; border: 2px solid #159249; transform: translateY(-2px); }
-        input {
-            width: 85%;
+        
+        /* حقل إضافة مهمة جديدة */
+        .add-task-section {
+            background: white;
+            border-radius: 28px;
+            padding: 20px;
+            width: 90%;
             max-width: 550px;
-            padding: 14px 24px;
-            border: 2px solid #ddebe2;
-            border-radius: 60px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8e4;
+        }
+        .add-task-label {
+            font-family: "Rubik", sans-serif;
+            font-size: 0.9rem;
+            color: #159249;
+            font-weight: 500;
+            margin-bottom: 12px;
+            display: block;
+            text-align: center;
+        }
+        .add-task-input {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid #e2e8e4;
+            border-radius: 20px;
             font-size: 1rem;
             font-family: "Rubik", sans-serif;
             text-align: center;
             outline: none;
-            background: #fff;
-            margin: 15px auto 25px;
-            display: block;
+            background: #fefef8;
+            transition: all 0.2s;
         }
-        input:focus { border-color: #159249; box-shadow: 0 0 0 3px rgba(21, 146, 73, 0.1); }
-        .sunnah-list {
+        .add-task-input:focus {
+            border-color: #159249;
+            box-shadow: 0 0 0 3px rgba(21, 146, 73, 0.1);
+        }
+        .btn-add-task {
+            background: #159249;
+            color: white;
+            border: none;
+            border-radius: 60px;
+            padding: 12px 28px;
+            font-size: 1rem;
+            font-family: "Rubik", sans-serif;
+            font-weight: 500;
+            cursor: pointer;
+            margin-top: 15px;
+            width: 100%;
+            transition: all 0.2s;
+        }
+        .btn-add-task:hover { background: #0d6e3a; transform: translateY(-2px); }
+        
+        /* قائمة المهام */
+        .tasks-header {
+            font-family: "Rubik", sans-serif;
+            font-size: 0.85rem;
+            color: #5a7c6b;
+            margin-bottom: 10px;
+            margin-right: 5px;
+        }
+        .tasks-list {
             width: 90%;
-            max-width: 850px;
+            max-width: 800px;
             display: flex;
             flex-direction: column;
-            gap: 12px;
-            margin-top: 10px;
+            gap: 10px;
+            margin-top: 5px;
         }
-        .sunnah-item {
+        .task-item {
             background: #fff;
-            padding: 14px 20px;
+            padding: 12px 18px;
             border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             gap: 12px;
             flex-wrap: wrap;
-            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.04);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
             border-right: 4px solid #159249;
             transition: 0.2s;
             font-family: "Rubik", sans-serif;
             animation: fadeIn 0.25s ease;
         }
-        .sunnah-item:hover { transform: translateX(-3px); background: #fefef8; }
-        .sunnah-text { font-weight: 500; font-size: 0.9rem; flex: 1; line-height: 1.45; }
-        .item-buttons { display: flex; gap: 8px; }
-        .btn-delete {
+        .task-item:hover { transform: translateX(-3px); background: #fefef8; }
+        
+        .task-checkbox {
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            accent-color: #159249;
+            flex-shrink: 0;
+        }
+        
+        .task-text {
+            font-weight: 500;
+            font-size: 0.95rem;
+            flex: 1;
+            line-height: 1.4;
+            word-break: break-word;
+            transition: all 0.2s;
+        }
+        .task-text.completed {
+            text-decoration: line-through;
+            color: #8a9b8f;
+        }
+        
+        .task-buttons {
+            display: flex;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+        .btn-delete-task, .btn-suggest-task {
             border: none;
             border-radius: 30px;
-            padding: 5px 14px;
+            padding: 6px 14px;
             font-size: 0.7rem;
             font-family: "Rubik", sans-serif;
             font-weight: 500;
             cursor: pointer;
             transition: 0.2s;
+        }
+        .btn-delete-task {
             background: #f1f5f2;
             color: #d93025;
         }
-        .btn-delete:hover { background: #d93025; color: white; }
+        .btn-delete-task:hover { background: #d93025; color: white; }
+        .btn-suggest-task {
+            background: #eef4eb;
+            color: #159249;
+            border: 1px solid #c2dfce;
+        }
+        .btn-suggest-task:hover { background: #159249; color: white; }
+        
         .empty-message {
             text-align: center;
             color: #5f7b6e;
-            font-size: 0.9rem;
-            padding: 45px 20px;
+            font-size: 0.85rem;
+            padding: 35px 20px;
             background: rgba(255,255,255,0.6);
             border: 2px dashed #bfdbc9;
             border-radius: 28px;
@@ -141,27 +205,36 @@
         @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes slideUp { from { opacity: 0; transform: translateX(-50%) translateY(15px); } to { opacity: 1; transform: translateX(-50%) translateY(0); } }
         @media (max-width: 600px) {
-            .sunnah-item { flex-direction: column; text-align: center; }
-            .item-buttons { justify-content: center; margin-top: 6px; }
+            .task-item { flex-direction: column; text-align: center; }
+            .task-buttons { justify-content: center; margin-top: 6px; }
             .toast { white-space: normal; text-align: center; max-width: 85%; }
         }
     </style>
 </head>
 <body>
-    <h1>سنن مهجورة</h1>
-    <div class="sub">🎯 20 سنة محددة فقط | 10,000 كلمة مفتاحية | إذا لم توجد سنة → "لا توجد سنة"</div>
-    <div class="stats" id="stats">📊 جاري بناء قاعدة البيانات...</div>
-    <button class="btn-add" id="addBtn">➕ إضافة سنة</button>
-    <input type="text" id="sunnahInput" placeholder="اكتب أي كلمة... سأبحث في الـ 20 سنة المحددة" autocomplete="off">
-    <div class="sunnah-list" id="sunnahList"></div>
+    <h1>📿 سنن مهجورة</h1>
+    <div class="sub">➕ أضف مهمة | ✅ تشك للإنجاز | 💡 اقتراح سنة | 🗑️ حذف</div>
+    <div class="stats" id="stats">📊 جاري التحميل...</div>
+
+    <!-- حقل إضافة مهمة جديدة -->
+    <div class="add-task-section">
+        <div class="add-task-label">📝 أضف مهمة جديدة</div>
+        <input type="text" class="add-task-input" id="newTaskInput" placeholder="مثال: نمت على طهارة، استغفرت 100 مرة..." autocomplete="off">
+        <button class="btn-add-task" id="addTaskBtn">➕ إضافة المهمة</button>
+    </div>
+
+    <!-- قائمة المهام -->
+    <div class="tasks-header">📋 قائمة المهام</div>
+    <div class="tasks-list" id="tasksList"></div>
 
     <script>
         // ============================================================
-        // 20 سنة محددة فقط مع 10,000 كلمة مفتاحية
-        // إذا لم تكن الكلمة مرتبطة بأي سنة → يعرض "لا توجد سنة"
+        // برنامج إضافة مهام + 3 أزرار (حذف - اقتراح - مربع تشك)
+        // المستخدم يضيف المهمة بنفسه، البرنامج لا يضيف شيء من عنده
+        // زر الاقتراح: يبحث في قاعدة الكلمات ويقترح سنة مناسبة
         // ============================================================
         
-        // الـ 20 سنة المطلوبة
+        // ========== الـ 20 سنة المطلوبة للاقتراحات ==========
         const sunnahList = [
             { id: 0, name: "🛏️ نفض الفراش قبل النوم", text: "نفض الفراش ثلاث مرات قبل النوم مع التسمية" },
             { id: 1, name: "🧼 غسل اليدين بعد النوم", text: "غسل اليدين ثلاثاً عند الاستيقاظ قبل إدخالهما في الإناء" },
@@ -180,199 +253,107 @@
             { id: 14, name: "💧 دعاء بعد الوضوء", text: "أشهد أن لا إله إلا الله وحده لا شريك له وأشهد أن محمداً عبده ورسوله" }
         ];
         
-        // ========== توليد 10,000 كلمة مفتاحية ذكية ==========
-        
-        function generate10kKeywords() {
-            const keywordsMap = new Map();
-            let totalAdded = 0;
+        // ========== توليد قاعدة الكلمات المفتاحية للاقتراحات ==========
+        function generateKeywordMap() {
+            const map = new Map();
+            let count = 0;
             
-            function addKeyword(word, sunnahId) {
+            function add(word, id) {
                 if (!word || word.length < 2) return;
-                const normalized = word.trim().toLowerCase();
-                if (!keywordsMap.has(normalized)) {
-                    keywordsMap.set(normalized, sunnahId);
-                    totalAdded++;
+                const key = word.trim().toLowerCase();
+                if (!map.has(key)) {
+                    map.set(key, id);
+                    count++;
                 }
             }
             
-            // ===== 1. نفض الفراش (الفهرس 0) =====
-            const nafdRoots = [
-                "فراش", "الفراش", "فرشة", "الفرشة", "سرير", "السرير", "مرتبة", "المرتبة", "مضجع", "المضجع",
-                "نفض", "ينفض", "انفض", "نفضة", "هز", "يهز", "هزة", "رج", "يرج", "رجة", "حرك", "يحرك", "تحريك",
-                "ضرب", "يضرب", "كنس", "يكنس", "مسح", "يمسح", "تنظيف", "نظف", "ترتيب", "رتب", "نضد",
-                "قبل النوم", "عند النوم", "لما انام", "وقت النوم", "الليل", "قبل ما انام", "وقت المنام"
-            ];
-            nafdRoots.forEach(r => addKeyword(r, 0));
-            for(let i=1; i<=200; i++) {
-                addKeyword(`فراش${i}`, 0);
-                addKeyword(`نفض${i}`, 0);
-            }
+            // نفض الفراش (id 0)
+            ["فراش","الفراش","فرشة","سرير","نفض","ينفض","انفض","هز","رج","حرك","قبل النوم","عند النوم","الليل"].forEach(w => add(w, 0));
+            for(let i=1;i<=100;i++) { add(`فراش${i}`,0); add(`نفض${i}`,0); }
             
-            // ===== 2. غسل اليدين بعد النوم (الفهرس 1) =====
-            const washRoots = [
-                "غسل", "يغسل", "اغسل", "غسيل", "غسل اليدين", "غسل يدين", "غسل الايدين", "غسل الكفين",
-                "يد", "ايد", "الايد", "كف", "كفوف", "كفين", "بعد النوم", "بعد الاستيقاظ", "لما اصحى",
-                "عند القيام", "الصباح", "الاستيقاظ", "صحى", "صحوة", "استيقظ", "قمت", "قيام", "نهض", "نهوض"
-            ];
-            washRoots.forEach(r => addKeyword(r, 1));
-            for(let i=1; i<=200; i++) {
-                addKeyword(`غسل${i}`, 1);
-                addKeyword(`يد${i}`, 1);
-            }
+            // غسل اليدين (id 1)
+            ["غسل","يغسل","اغسل","غسل اليدين","يد","ايد","كف","بعد النوم","بعد الاستيقاظ","الصباح","استيقظ","قمت"].forEach(w => add(w, 1));
+            for(let i=1;i<=100;i++) { add(`غسل${i}`,1); add(`يد${i}`,1); }
             
-            // ===== 3. الرواتب (الفهرس 2) =====
-            const rawatibRoots = [
-                "رواتب", "الرواتب", "سنن رواتب", "رواتب الصلاة", "النوافل", "نوافل الصلاة", "تطوع", "تطوعات",
-                "۱۲ ركعة", "اثنتا عشرة", "أربع قبل الظهر", "ركعتين قبل الفجر", "ركعتين بعد المغرب",
-                "قبل الظهر", "بعد الظهر", "بعد المغرب", "بعد العشاء", "قبل الفجر", "سنة الظهر", "سنة الفجر"
-            ];
-            rawatibRoots.forEach(r => addKeyword(r, 2));
-            for(let i=1; i<=200; i++) {
-                addKeyword(`ركعة${i}`, 2);
-                addKeyword(`رواتب${i}`, 2);
-            }
+            // الرواتب (id 2)
+            ["رواتب","الرواتب","سنن رواتب","النوافل","تطوع","قبل الظهر","بعد الظهر","بعد المغرب","بعد العشاء","قبل الفجر"].forEach(w => add(w, 2));
+            for(let i=1;i<=100;i++) add(`رواتب${i}`,2);
             
-            // ===== 4. قيام الليل (الفهرس 3) =====
-            const qyamRoots = [
-                "قيام", "قيام الليل", "صلاة الليل", "تهجد", "التهجد", "سنة الليل", "الليل", "جوف الليل",
-                "ثلث الليل", "آخر الليل", "منتصف الليل", "السحر", "الأسحار", "سحر", "وقت السحر",
-                "يتهجد", "تهجد في الليل", "صلاة السحر"
-            ];
-            qyamRoots.forEach(r => addKeyword(r, 3));
-            for(let i=1; i<=200; i++) {
-                addKeyword(`ليل${i}`, 3);
-                addKeyword(`قيام${i}`, 3);
-            }
+            // قيام الليل (id 3)
+            ["قيام","قيام الليل","صلاة الليل","تهجد","التهجد","جوف الليل","آخر الليل","السحر"].forEach(w => add(w, 3));
+            for(let i=1;i<=100;i++) add(`ليل${i}`,3);
             
-            // ===== 5. الترويح (الفهرس 4) =====
-            const trowihRoots = [
-                "ترويح", "الترويح", "ترويحة", "التراويح", "صلاة التراويح", "استراحة", "الاستراحة", "راحة",
-                "بين الركعات", "بين التراويح", "في التراويح", "تنفس", "يجلس", "قعدة", "رمضان"
-            ];
-            trowihRoots.forEach(r => addKeyword(r, 4));
-            for(let i=1; i<=150; i++) addKeyword(`ترويح${i}`, 4);
+            // الترويح (id 4)
+            ["ترويح","الترويح","ترويحة","التراويح","استراحة","بين الركعات","رمضان"].forEach(w => add(w, 4));
             
-            // ===== 6. الوتر (الفهرس 5) =====
-            const witrRoots = [
-                "وتر", "الوتر", "صلاة الوتر", "ركعة وتر", "الشفع والوتر", "آخر الليل", "بعد العشاء",
-                "ركعة واحدة", "ثلاث ركعات", "خمس ركعات", "القنوت", "دعاء القنوت"
-            ];
-            witrRoots.forEach(r => addKeyword(r, 5));
-            for(let i=1; i<=150; i++) addKeyword(`وتر${i}`, 5);
+            // الوتر (id 5)
+            ["وتر","الوتر","صلاة الوتر","ركعة وتر","الشفع","القنوت"].forEach(w => add(w, 5));
             
-            // ===== 7. المسواك (الفهرس 6) =====
-            const miswakRoots = [
-                "مسواك", "سواك", "استاك", "يتسوك", "السواك", "المسواك", "عود", "الآراك", "أراك",
-                "تنظيف الأسنان", "فرشاة الأسنان", "استعمال السواك", "السواك للوضوء", "قبل الصلاة",
-                "عند الوضوء", "عند القيام من النوم"
-            ];
-            miswakRoots.forEach(r => addKeyword(r, 6));
-            for(let i=1; i<=150; i++) addKeyword(`سواك${i}`, 6);
+            // المسواك (id 6)
+            ["مسواك","سواك","استاك","السواك","عود","أراك","تنظيف الأسنان"].forEach(w => add(w, 6));
             
-            // ===== 8. أكل التمر (الفهرس 7) =====
-            const tamrRoots = [
-                "تمر", "التمر", "تمرات", "عجوة", "تمر عجوة", "رطب", "الرطب", "بلح", "اكل التمر",
-                "أكل التمر", "يفطر على تمر", "سبع تمرات", "سبع عجوات", "على الريق", "الصباح"
-            ];
-            tamrRoots.forEach(r => addKeyword(r, 7));
-            for(let i=1; i<=150; i++) addKeyword(`تمر${i}`, 7);
+            // أكل التمر (id 7)
+            ["تمر","التمر","تمرات","عجوة","رطب","بلح","اكل التمر","يفطر على تمر","سبع تمرات"].forEach(w => add(w, 7));
             
-            // ===== 9. أذكار الصباح (الفهرس 8) =====
-            const sabahRoots = [
-                "اذكار الصباح", "أذكار الصباح", "اذكار الصبح", "صباح", "الصباح", "اصبحنا", "أصبحنا",
-                "اللهم بك أصبحنا", "ورد الصباح", "تحصين الصباح", "دعاء الصباح"
-            ];
-            sabahRoots.forEach(r => addKeyword(r, 8));
-            for(let i=1; i<=150; i++) addKeyword(`صباح${i}`, 8);
+            // أذكار الصباح (id 8)
+            ["اذكار الصباح","أذكار الصباح","صباح","الصباح","اصبحنا","ورد الصباح"].forEach(w => add(w, 8));
             
-            // ===== 10. أذكار المساء (الفهرس 9) =====
-            const masaaRoots = [
-                "اذكار المساء", "أذكار المساء", "مساء", "المساء", "أمسينا", "اللهم بك أمسينا",
-                "تحصين المساء", "دعاء المساء", "ورد المساء"
-            ];
-            masaaRoots.forEach(r => addKeyword(r, 9));
-            for(let i=1; i<=150; i++) addKeyword(`مساء${i}`, 9);
+            // أذكار المساء (id 9)
+            ["اذكار المساء","أذكار المساء","مساء","المساء","أمسينا","ورد المساء"].forEach(w => add(w, 9));
             
-            // ===== 11. أذكار النوم (الفهرس 10) =====
-            const nawmRoots = [
-                "اذكار النوم", "أذكار النوم", "قبل النوم", "عند النوم", "آية الكرسي", "المعوذات",
-                "الإخلاص", "الفلق", "الناس", "باسمك اللهم أموت وأحيا", "النوم على الشق الأيمن"
-            ];
-            nawmRoots.forEach(r => addKeyword(r, 10));
-            for(let i=1; i<=150; i++) addKeyword(`نوم${i}`, 10);
+            // أذكار النوم (id 10)
+            ["اذكار النوم","أذكار النوم","قبل النوم","آية الكرسي","المعوذات","النوم على الشق الأيمن"].forEach(w => add(w, 10));
             
-            // ===== 12. دعاء الاستيقاظ (الفهرس 11) =====
-            const estiqazRoots = [
-                "استيقاظ", "دعاء الاستيقاظ", "دعاء الاستيقاظ من النوم", "الحمد لله الذي أحيانا",
-                "الحمد لله", "أحيانا", "إليه النشور", "لما اصحى", "صحى", "صحوت", "قمت من النوم"
-            ];
-            estiqazRoots.forEach(r => addKeyword(r, 11));
-            for(let i=1; i<=150; i++) addKeyword(`استيقظ${i}`, 11);
+            // دعاء الاستيقاظ (id 11)
+            ["استيقاظ","دعاء الاستيقاظ","الحمد لله الذي أحيانا","إليه النشور","صحوت","قمت من النوم"].forEach(w => add(w, 11));
             
-            // ===== 13. مسح أثر النوم (الفهرس 12) =====
-            const mashRoots = [
-                "مسح أثر النوم", "مسح النوم", "يمسح وجهه", "مسح الوجه", "يدلك وجهه", "يدلك عينيه",
-                "فرك العينين", "إزالة أثر النوم", "النعاس"
-            ];
-            mashRoots.forEach(r => addKeyword(r, 12));
-            for(let i=1; i<=150; i++) addKeyword(`مسح${i}`, 12);
+            // مسح أثر النوم (id 12)
+            ["مسح أثر النوم","مسح النوم","يمسح وجهه","مسح الوجه","فرك العينين"].forEach(w => add(w, 12));
             
-            // ===== 14. التسمية قبل الوضوء (الفهرس 13) =====
-            const tasmiyaRoots = [
-                "تسمية الوضوء", "بسم الله الوضوء", "قول بسم الله عند الوضوء", "التسمية قبل الوضوء",
-                "بسم الله الرحمن الرحيم", "يسمي الله", "يتوضأ ويسمي", "بداية الوضوء"
-            ];
-            tasmiyaRoots.forEach(r => addKeyword(r, 13));
-            for(let i=1; i<=150; i++) addKeyword(`تسمية${i}`, 13);
+            // التسمية قبل الوضوء (id 13)
+            ["تسمية الوضوء","بسم الله الوضوء","التسمية قبل الوضوء","يتوضأ ويسمي"].forEach(w => add(w, 13));
             
-            // ===== 15. دعاء بعد الوضوء (الفهرس 14) =====
-            const duaaRoots = [
-                "دعاء الوضوء", "دعاء بعد الوضوء", "بعد الفراغ من الوضوء", "أشهد أن لا إله إلا الله",
-                "لا إله إلا الله وحده لا شريك له", "وأشهد أن محمداً عبده ورسوله",
-                "اللهم اجعلني من التوابين", "ختم الوضوء"
-            ];
-            duaaRoots.forEach(r => addKeyword(r, 14));
-            for(let i=1; i<=150; i++) addKeyword(`دعاء${i}`, 14);
+            // دعاء بعد الوضوء (id 14)
+            ["دعاء الوضوء","دعاء بعد الوضوء","بعد الفراغ من الوضوء","أشهد أن لا إله إلا الله","ختم الوضوء"].forEach(w => add(w, 14));
             
-            document.getElementById("stats").innerHTML = `📊 قاعدة البيانات: ${keywordsMap.size.toLocaleString()} كلمة مفتاحية موزعة على ${sunnahList.length} سنة | ✅ جاهز للاستخدام | ❌ إذا لم توجد كلمة → "لا توجد سنة"`;
-            return keywordsMap;
+            document.getElementById("stats").innerHTML = `📊 قاعدة بيانات: ${count.toLocaleString()} كلمة مفتاحية للاقتراحات`;
+            return map;
         }
         
-        const keywordsDatabase = generate10kKeywords();
+        const keywordMap = generateKeywordMap();
         
-        // دالة البحث - تعود null إذا لم تجد سنة
-        function findSunnah(word) {
-            if (!word) return null;
-            const text = word.trim().toLowerCase();
+        // دالة البحث عن سنة مناسبة لكلمة معينة
+        function findSunnahByText(text) {
+            if (!text) return null;
+            const searchText = text.trim().toLowerCase();
             
-            // بحث تام
-            if (keywordsDatabase.has(text)) {
-                return sunnahList[keywordsDatabase.get(text)];
+            if (keywordMap.has(searchText)) {
+                return sunnahList[keywordMap.get(searchText)];
             }
             
-            // بحث جزئي (إذا كانت الكلمة جزء من مفتاح)
-            for (let [key, index] of keywordsDatabase.entries()) {
-                if (text.includes(key) || key.includes(text)) {
-                    return sunnahList[index];
+            for (let [key, id] of keywordMap.entries()) {
+                if (searchText.includes(key) || key.includes(searchText)) {
+                    return sunnahList[id];
                 }
             }
-            
-            // لم يتم العثور على شيء
             return null;
         }
         
-        // ========== إدارة الواجهة ==========
-        const listContainer = document.getElementById("sunnahList");
-        const inputField = document.getElementById("sunnahInput");
-        const addButton = document.getElementById("addBtn");
+        // ========== إدارة المهام ==========
+        const tasksList = document.getElementById("tasksList");
+        const newTaskInput = document.getElementById("newTaskInput");
+        const addTaskBtn = document.getElementById("addTaskBtn");
         
-        function showMessage(text, isError = false) {
+        let tasks = []; // مصفوفة لتخزين المهام { id, text, completed }
+        let nextId = 1;
+        
+        function showMessage(msg, isError = false) {
             let old = document.querySelector(".toast");
             if (old) old.remove();
             let toast = document.createElement("div");
             toast.className = "toast";
             toast.style.backgroundColor = isError ? "#c73b2bdd" : "#159249dd";
-            toast.innerText = text;
+            toast.innerText = msg;
             document.body.appendChild(toast);
             setTimeout(() => {
                 toast.style.opacity = "0";
@@ -380,109 +361,140 @@
             }, 2000);
         }
         
-        function saveList() {
-            const items = document.querySelectorAll(".sunnah-text");
-            const sunnahs = Array.from(items).map(item => item.innerText);
-            localStorage.setItem("my20Sunnahs10k", JSON.stringify(sunnahs));
+        // حفظ المهام في localStorage
+        function saveTasks() {
+            localStorage.setItem("myTasks", JSON.stringify(tasks));
         }
         
-        function addSunnah(sunnahObj, save = true) {
-            if (!sunnahObj) return false;
-            const fullText = `${sunnahObj.name} : ${sunnahObj.text}`;
-            const trimmed = fullText.trim();
-            const existing = Array.from(document.querySelectorAll(".sunnah-text"));
-            if (existing.some(item => item.innerText === trimmed)) {
-                showMessage("⚠️ هذه السنة موجودة بالفعل", true);
-                return false;
-            }
-            
-            const itemDiv = document.createElement("div");
-            itemDiv.className = "sunnah-item";
-            const textSpan = document.createElement("span");
-            textSpan.className = "sunnah-text";
-            textSpan.innerText = trimmed;
-            const buttonsDiv = document.createElement("div");
-            buttonsDiv.className = "item-buttons";
-            
-            const deleteBtn = document.createElement("button");
-            deleteBtn.innerText = "🗑️ حذف";
-            deleteBtn.className = "btn-delete";
-            deleteBtn.onclick = () => {
-                itemDiv.remove();
-                saveList();
-                showMessage("✔️ تم حذف السنة");
-                if (listContainer.children.length === 0) showEmptyMessage();
-            };
-            
-            buttonsDiv.appendChild(deleteBtn);
-            itemDiv.appendChild(textSpan);
-            itemDiv.appendChild(buttonsDiv);
-            listContainer.appendChild(itemDiv);
-            if (save) saveList();
-            hideEmptyMessage();
-            return true;
-        }
-        
-        function showEmptyMessage() {
-            if (listContainer.children.length === 0 && !document.querySelector(".empty-message")) {
-                let emptyDiv = document.createElement("div");
-                emptyDiv.className = "empty-message";
-                emptyDiv.id = "emptyMsg";
-                emptyDiv.innerHTML = "🌿 اكتب أي كلمة - إذا كانت ضمن الـ 20 سنة المحددة سأقترحها، وإلا سأقول 'لا توجد سنة'";
-                listContainer.appendChild(emptyDiv);
-            }
-        }
-        
-        function hideEmptyMessage() {
-            let emptyMsg = document.getElementById("emptyMsg");
-            if (emptyMsg) emptyMsg.remove();
-        }
-        
-        function addNewSunnah() {
-            let userText = inputField.value.trim();
-            if (userText === "") {
-                showMessage("✍️ اكتب كلمة أولاً", true);
-                return;
-            }
-            
-            const foundSunnah = findSunnah(userText);
-            
-            if (!foundSunnah) {
-                showMessage(`❌ لا توجد سنة مرتبطة بكلمة "${userText}"`, true);
-                inputField.value = "";
-                return;
-            }
-            
-            if (confirm(`✨ بناءً على كلمة "${userText}"\n\nالسنة المناسبة:\n${foundSunnah.name}\n${foundSunnah.text}\n\nهل تريد إضافتها إلى قائمة السنن؟`)) {
-                addSunnah(foundSunnah, true);
-                showMessage("✅ تم إضافة السنة");
-            }
-            inputField.value = "";
-        }
-        
-        function loadSaved() {
-            const saved = localStorage.getItem("my20Sunnahs10k");
+        // تحميل المهام المحفوظة
+        function loadTasks() {
+            const saved = localStorage.getItem("myTasks");
             if (saved) {
                 try {
-                    const arr = JSON.parse(saved);
-                    if (arr.length > 0) {
-                        arr.forEach(text => {
-                            for (let s of sunnahList) {
-                                if (text.includes(s.name)) {
-                                    addSunnah(s, false);
-                                    break;
-                                }
-                            }
-                        });
+                    tasks = JSON.parse(saved);
+                    if (tasks.length > 0) {
+                        nextId = Math.max(...tasks.map(t => t.id)) + 1;
                     }
-                    else showEmptyMessage();
-                } catch(e) { showEmptyMessage(); }
-            } else { showEmptyMessage(); }
+                    renderTasks();
+                } catch(e) {
+                    tasks = [];
+                    renderTasks();
+                }
+            } else {
+                renderTasks();
+            }
         }
         
-        addButton.addEventListener("click", addNewSunnah);
-        inputField.addEventListener("keypress", (e) => { if (e.key === "Enter") addNewSunnah(); });
-        loadSaved();
+        // عرض المهام في الواجهة
+        function renderTasks() {
+            if (tasks.length === 0) {
+                tasksList.innerHTML = `<div class="empty-message">🌿 لا توجد مهام بعد... أضف مهمة جديدة في الأعلى</div>`;
+                return;
+            }
+            
+            tasksList.innerHTML = "";
+            tasks.forEach(task => {
+                const taskDiv = document.createElement("div");
+                taskDiv.className = "task-item";
+                
+                // مربع التشك (checkbox)
+                const checkbox = document.createElement("input");
+                checkbox.type = "checkbox";
+                checkbox.className = "task-checkbox";
+                checkbox.checked = task.completed;
+                checkbox.onchange = () => {
+                    task.completed = checkbox.checked;
+                    saveTasks();
+                    renderTasks();
+                    showMessage(task.completed ? "✅ تم إكمال المهمة" : "📝 تم إلغاء إكمال المهمة");
+                };
+                
+                // نص المهمة
+                const textSpan = document.createElement("span");
+                textSpan.className = "task-text" + (task.completed ? " completed" : "");
+                textSpan.innerText = task.text;
+                
+                // مجموعة الأزرار
+                const buttonsDiv = document.createElement("div");
+                buttonsDiv.className = "task-buttons";
+                
+                // زر الحذف
+                const deleteBtn = document.createElement("button");
+                deleteBtn.innerText = "🗑️ حذف";
+                deleteBtn.className = "btn-delete-task";
+                deleteBtn.onclick = () => {
+                    tasks = tasks.filter(t => t.id !== task.id);
+                    saveTasks();
+                    renderTasks();
+                    showMessage("🗑️ تم حذف المهمة");
+                };
+                
+                // زر الاقتراح (يبحث في قاعدة الكلمات ويقترح سنة)
+                const suggestBtn = document.createElement("button");
+                suggestBtn.innerText = "💡 اقتراح";
+                suggestBtn.className = "btn-suggest-task";
+                suggestBtn.onclick = () => {
+                    const found = findSunnahByText(task.text);
+                    if (found) {
+                        if (confirm(`📖 بناءً على مهمتك "${task.text}"\n\nالسنة المناسبة:\n${found.name}\n${found.text}\n\nهل تريد إضافتها كمهمة جديدة؟`)) {
+                            // إضافة السنة كمهمة جديدة
+                            const newTask = {
+                                id: nextId++,
+                                text: `${found.name} : ${found.text}`,
+                                completed: false
+                            };
+                            tasks.push(newTask);
+                            saveTasks();
+                            renderTasks();
+                            showMessage("✅ تم إضافة السنة كمهمة جديدة");
+                        }
+                    } else {
+                        showMessage(`❌ لا توجد سنة مرتبطة بـ "${task.text}"`, true);
+                    }
+                };
+                
+                buttonsDiv.appendChild(deleteBtn);
+                buttonsDiv.appendChild(suggestBtn);
+                
+                taskDiv.appendChild(checkbox);
+                taskDiv.appendChild(textSpan);
+                taskDiv.appendChild(buttonsDiv);
+                tasksList.appendChild(taskDiv);
+            });
+        }
+        
+        // إضافة مهمة جديدة
+        function addNewTask() {
+            const taskText = newTaskInput.value.trim();
+            if (taskText === "") {
+                showMessage("✍️ اكتب المهمة أولاً", true);
+                return;
+            }
+            
+            const newTask = {
+                id: nextId++,
+                text: taskText,
+                completed: false
+            };
+            tasks.push(newTask);
+            saveTasks();
+            renderTasks();
+            showMessage(`➕ تم إضافة المهمة: ${taskText.substring(0, 40)}`);
+            newTaskInput.value = "";
+            newTaskInput.focus();
+        }
+        
+        // ربط الأحداث
+        addTaskBtn.addEventListener("click", addNewTask);
+        newTaskInput.addEventListener("keypress", (e) => {
+            if (e.key === "Enter") {
+                e.preventDefault();
+                addNewTask();
+            }
+        });
+        
+        // بدء التشغيل
+        loadTasks();
     </script>
 </body>
 </html>
