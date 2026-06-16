@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>سنن مهجورة - تنظيم أسبوعي</title>
+    <title>سنن مهجورة - المهام الأسبوعية</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rakkas&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
@@ -28,32 +28,52 @@
             color: #c9d1d9;
         }
         
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+            width: 100%;
+            max-width: 700px;
+        }
         h1 {
-            font-size: clamp(1.8rem, 5vw, 3rem);
-            margin-bottom: 5px;
+            font-size: clamp(1.6rem, 4vw, 2.5rem);
             text-align: center;
         }
         body.light h1 { color: #159249; }
         body.dark h1 { color: #58a6ff; }
         
-        .sub {
-            font-size: 0.8rem;
-            margin-bottom: 15px;
-            text-align: center;
+        .btn-back {
+            background: none;
+            border: 2px solid;
+            border-radius: 40px;
+            padding: 6px 18px;
+            font-family: "Rubik", sans-serif;
+            font-size: 0.75rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: 0.2s;
+            text-decoration: none;
         }
-        body.light .sub { color: #5a7c6b; }
-        body.dark .sub { color: #8b949e; }
+        body.light .btn-back {
+            border-color: #159249;
+            color: #159249;
+        }
+        body.light .btn-back:hover {
+            background: #159249;
+            color: white;
+        }
+        body.dark .btn-back {
+            border-color: #58a6ff;
+            color: #58a6ff;
+        }
+        body.dark .btn-back:hover {
+            background: #58a6ff;
+            color: #0d1117;
+        }
         
-        .top-bar {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-            margin-bottom: 15px;
-            flex-wrap: wrap;
-            justify-content: center;
-            width: 100%;
-            max-width: 550px;
-        }
         .btn-toggle {
             background: none;
             border: 2px solid;
@@ -64,8 +84,6 @@
             font-weight: 500;
             cursor: pointer;
             transition: 0.2s;
-            flex: 1;
-            max-width: 200px;
         }
         body.light .btn-toggle {
             border-color: #159249;
@@ -404,16 +422,14 @@
             .add-task-input { width: 100%; }
             .add-task-select { width: 100%; max-width: 200px; }
             .btn-add-task { width: 100%; }
-            .top-bar { flex-direction: column; }
-            .btn-toggle { max-width: 100%; width: 100%; }
+            .header { flex-direction: column; align-items: center; }
         }
     </style>
 </head>
 <body class="light" id="body">
-    <h1>سنن مهجورة</h1>
-    <div class="sub">📅 تنظيم أسبوعي للسنن والمهام</div>
-    
-    <div class="top-bar">
+    <div class="header">
+        <a href="index.html" class="btn-back">⬅ رجوع</a>
+        <h1>📋 المهام الأسبوعية</h1>
         <button class="btn-toggle" id="toggleBtn">🌙 الوضع الداكن</button>
     </div>
 
@@ -446,13 +462,8 @@
 
     <script>
         const dayNames = {
-            saturday: 'السبت',
-            sunday: 'الأحد',
-            monday: 'الإثنين',
-            tuesday: 'الثلاثاء',
-            wednesday: 'الأربعاء',
-            thursday: 'الخميس',
-            friday: 'الجمعة'
+            saturday: 'السبت', sunday: 'الأحد', monday: 'الإثنين',
+            tuesday: 'الثلاثاء', wednesday: 'الأربعاء', thursday: 'الخميس', friday: 'الجمعة'
         };
         const dayOrder = ['saturday', 'sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday'];
 
@@ -520,7 +531,6 @@
         const daySelect = document.getElementById("daySelect");
         const toggleBtn = document.getElementById("toggleBtn");
         const body = document.getElementById("body");
-        const daySelector = document.getElementById("daySelector");
         
         let tasks = [];
         let nextId = 1;
@@ -677,12 +687,6 @@
             showMessage(`تمت الاضافة إلى ${dayNames[day]}`);
         }
         
-        // ========== أحداث ==========
-        addTaskBtn.addEventListener("click", addNewTask);
-        newTaskInput.addEventListener("keypress", (e) => {
-            if (e.key === "Enter") { e.preventDefault(); addNewTask(); }
-        });
-        
         document.querySelectorAll('.day-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 document.querySelectorAll('.day-btn').forEach(b => b.classList.remove('active'));
@@ -712,6 +716,10 @@
             }
         }
         
+        addTaskBtn.addEventListener("click", addNewTask);
+        newTaskInput.addEventListener("keypress", (e) => {
+            if (e.key === "Enter") { e.preventDefault(); addNewTask(); }
+        });
         toggleBtn.addEventListener("click", toggleMode);
         loadTheme();
         loadTasks();
