@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>سنن مهجورة</title>
+    <title>سنن مهجورة - تنظيم أسبوعي</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rakkas&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
@@ -30,23 +30,42 @@
         
         h1 {
             font-size: clamp(1.8rem, 5vw, 3rem);
-            margin-bottom: 15px;
+            margin-bottom: 5px;
             text-align: center;
         }
         body.light h1 { color: #159249; }
         body.dark h1 { color: #58a6ff; }
         
+        .sub {
+            font-size: 0.8rem;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        body.light .sub { color: #5a7c6b; }
+        body.dark .sub { color: #8b949e; }
+        
+        .top-bar {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+            width: 100%;
+            max-width: 550px;
+        }
         .btn-toggle {
             background: none;
             border: 2px solid;
             border-radius: 40px;
-            padding: 8px 24px;
+            padding: 6px 18px;
             font-family: "Rubik", sans-serif;
-            font-size: 0.85rem;
+            font-size: 0.75rem;
             font-weight: 500;
             cursor: pointer;
             transition: 0.2s;
-            margin-bottom: 15px;
+            flex: 1;
+            max-width: 200px;
         }
         body.light .btn-toggle {
             border-color: #159249;
@@ -65,14 +84,56 @@
             color: #0d1117;
         }
         
+        .day-selector {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 15px;
+            width: 100%;
+            max-width: 650px;
+        }
+        .day-btn {
+            border: none;
+            border-radius: 30px;
+            padding: 5px 12px;
+            font-family: "Rubik", sans-serif;
+            font-size: 0.65rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        body.light .day-btn {
+            background: #eef7f0;
+            color: #1e2f2a;
+        }
+        body.light .day-btn:hover { background: #d4e8da; }
+        body.light .day-btn.active {
+            background: #159249;
+            color: white;
+        }
+        body.dark .day-btn {
+            background: #21262d;
+            color: #c9d1d9;
+        }
+        body.dark .day-btn:hover { background: #30363d; }
+        body.dark .day-btn.active {
+            background: #238636;
+            color: white;
+        }
+        
         .add-task-section {
             border-radius: 28px;
-            padding: 18px;
+            padding: 14px 18px;
             width: 92%;
             max-width: 550px;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
             transition: all 0.3s ease;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
         }
         body.light .add-task-section {
             background: white;
@@ -85,14 +146,15 @@
         }
         
         .add-task-input {
-            width: 100%;
-            padding: 14px 18px;
+            flex: 1;
+            padding: 10px 14px;
             border-radius: 20px;
-            font-size: 1rem;
+            font-size: 0.9rem;
             font-family: "Rubik", sans-serif;
             text-align: center;
             outline: none;
             transition: all 0.3s ease;
+            min-width: 130px;
         }
         body.light .add-task-input {
             border: 2px solid #e2e8e4;
@@ -116,17 +178,48 @@
             color: #8b949e;
         }
         
+        .add-task-select {
+            padding: 10px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-family: "Rubik", sans-serif;
+            text-align: center;
+            outline: none;
+            transition: all 0.3s ease;
+            min-width: 100px;
+            cursor: pointer;
+        }
+        body.light .add-task-select {
+            border: 2px solid #e2e8e4;
+            background: #fefef8;
+            color: #1e2f2a;
+        }
+        body.light .add-task-select:focus {
+            border-color: #159249;
+        }
+        body.dark .add-task-select {
+            border: 2px solid #30363d;
+            background: #0d1117;
+            color: #c9d1d9;
+        }
+        body.dark .add-task-select:focus {
+            border-color: #58a6ff;
+        }
+        body.dark .add-task-select option {
+            background: #161b22;
+        }
+        
         .btn-add-task {
             border: none;
             border-radius: 60px;
-            padding: 11px 24px;
-            font-size: 1rem;
+            padding: 10px 20px;
+            font-size: 0.9rem;
             font-family: "Rubik", sans-serif;
             font-weight: 500;
             cursor: pointer;
-            margin-top: 12px;
-            width: 100%;
             transition: all 0.2s;
+            white-space: nowrap;
+            min-width: 80px;
         }
         body.light .btn-add-task {
             background: #159249;
@@ -144,37 +237,54 @@
             max-width: 800px;
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 6px;
             margin-top: 5px;
         }
+        .day-header {
+            font-size: 0.75rem;
+            font-weight: 500;
+            padding: 5px 10px;
+            border-radius: 12px;
+            margin-top: 5px;
+            text-align: center;
+        }
+        body.light .day-header {
+            background: #eef7f0;
+            color: #159249;
+        }
+        body.dark .day-header {
+            background: #21262d;
+            color: #58a6ff;
+        }
+        
         .task-item {
-            padding: 12px 16px;
-            border-radius: 18px;
+            padding: 8px 12px;
+            border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 10px;
+            gap: 8px;
             flex-wrap: wrap;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
             transition: all 0.3s ease;
             font-family: "Rubik", sans-serif;
-            animation: fadeIn 0.25s ease;
+            animation: fadeIn 0.2s ease;
         }
         body.light .task-item {
             background: white;
-            border-right: 4px solid #159249;
+            border-right: 3px solid #159249;
         }
         body.light .task-item:hover { transform: translateX(-3px); background: #fefef8; }
         body.dark .task-item {
             background: #161b22;
-            border-right: 4px solid #58a6ff;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            border-right: 3px solid #58a6ff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
         }
         body.dark .task-item:hover { transform: translateX(-3px); background: #1c2333; }
         
         .task-checkbox {
-            width: 22px;
-            height: 22px;
+            width: 18px;
+            height: 18px;
             cursor: pointer;
             flex-shrink: 0;
         }
@@ -183,7 +293,7 @@
         
         .task-text {
             font-weight: 500;
-            font-size: 0.95rem;
+            font-size: 0.8rem;
             flex: 1;
             line-height: 1.4;
             word-break: break-word;
@@ -197,16 +307,28 @@
         body.light .task-text.completed { color: #8a9b8f; }
         body.dark .task-text.completed { color: #8b949e; }
         
+        .task-day-label {
+            font-size: 0.6rem;
+            padding: 2px 8px;
+            border-radius: 20px;
+            background: #eef7f0;
+            color: #159249;
+        }
+        body.dark .task-day-label {
+            background: #21262d;
+            color: #58a6ff;
+        }
+        
         .task-buttons {
             display: flex;
-            gap: 6px;
+            gap: 4px;
             flex-shrink: 0;
         }
         .btn-delete-task, .btn-suggest-task {
             border: none;
             border-radius: 30px;
-            padding: 5px 12px;
-            font-size: 0.7rem;
+            padding: 3px 10px;
+            font-size: 0.6rem;
             font-family: "Rubik", sans-serif;
             font-weight: 500;
             cursor: pointer;
@@ -238,8 +360,8 @@
         
         .empty-message {
             text-align: center;
-            font-size: 0.85rem;
-            padding: 30px 15px;
+            font-size: 0.8rem;
+            padding: 25px 15px;
             border-radius: 28px;
         }
         body.light .empty-message {
@@ -255,15 +377,15 @@
         
         .toast {
             position: fixed;
-            bottom: 25px;
+            bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
             backdrop-filter: blur(8px);
             color: white;
-            padding: 6px 18px;
+            padding: 5px 16px;
             border-radius: 40px;
             font-family: "Rubik", sans-serif;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             z-index: 999;
             animation: slideUp 0.25s ease;
             pointer-events: none;
@@ -276,24 +398,64 @@
         @keyframes slideUp { from { opacity: 0; transform: translateX(-50%) translateY(15px); } to { opacity: 1; transform: translateX(-50%) translateY(0); } }
         @media (max-width: 600px) {
             .task-item { flex-direction: column; text-align: center; }
-            .task-buttons { justify-content: center; margin-top: 6px; }
+            .task-buttons { justify-content: center; margin-top: 4px; }
             .toast { white-space: normal; text-align: center; max-width: 85%; }
+            .add-task-section { flex-direction: column; align-items: center; }
+            .add-task-input { width: 100%; }
+            .add-task-select { width: 100%; max-width: 200px; }
+            .btn-add-task { width: 100%; }
+            .top-bar { flex-direction: column; }
+            .btn-toggle { max-width: 100%; width: 100%; }
         }
     </style>
 </head>
 <body class="light" id="body">
     <h1>سنن مهجورة</h1>
+    <div class="sub">📅 تنظيم أسبوعي للسنن والمهام</div>
     
-    <button class="btn-toggle" id="toggleBtn">🌙 الوضع الداكن</button>
+    <div class="top-bar">
+        <button class="btn-toggle" id="toggleBtn">🌙 الوضع الداكن</button>
+    </div>
+
+    <div class="day-selector" id="daySelector">
+        <button class="day-btn active" data-day="all">الكل</button>
+        <button class="day-btn" data-day="saturday">السبت</button>
+        <button class="day-btn" data-day="sunday">الأحد</button>
+        <button class="day-btn" data-day="monday">الإثنين</button>
+        <button class="day-btn" data-day="tuesday">الثلاثاء</button>
+        <button class="day-btn" data-day="wednesday">الأربعاء</button>
+        <button class="day-btn" data-day="thursday">الخميس</button>
+        <button class="day-btn" data-day="friday">الجمعة</button>
+    </div>
 
     <div class="add-task-section">
         <input type="text" class="add-task-input" id="newTaskInput" placeholder="اكتب المهمة..." autocomplete="off">
+        <select class="add-task-select" id="daySelect">
+            <option value="saturday">السبت</option>
+            <option value="sunday">الأحد</option>
+            <option value="monday">الإثنين</option>
+            <option value="tuesday">الثلاثاء</option>
+            <option value="wednesday">الأربعاء</option>
+            <option value="thursday">الخميس</option>
+            <option value="friday">الجمعة</option>
+        </select>
         <button class="btn-add-task" id="addTaskBtn">اضافة</button>
     </div>
 
     <div class="tasks-list" id="tasksList"></div>
 
     <script>
+        const dayNames = {
+            saturday: 'السبت',
+            sunday: 'الأحد',
+            monday: 'الإثنين',
+            tuesday: 'الثلاثاء',
+            wednesday: 'الأربعاء',
+            thursday: 'الخميس',
+            friday: 'الجمعة'
+        };
+        const dayOrder = ['saturday', 'sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday'];
+
         const sunnahList = [
             { id: 0, name: "نفض الفراش قبل النوم", text: "نفض الفراش ثلاث مرات قبل النوم مع التسمية" },
             { id: 1, name: "غسل اليدين بعد النوم", text: "غسل اليدين ثلاثاً عند الاستيقاظ قبل إدخالهما في الإناء" },
@@ -314,68 +476,40 @@
         
         function generateKeywordMap() {
             const map = new Map();
-            let count = 0;
-            
             function add(word, id) {
                 if (!word || word.length < 2) return;
                 const key = word.trim().toLowerCase();
-                if (!map.has(key)) {
-                    map.set(key, id);
-                    count++;
-                }
+                if (!map.has(key)) map.set(key, id);
             }
-            
             ["فراش","الفراش","فرشة","سرير","نفض","ينفض","انفض","هز","رج","حرك","قبل النوم","عند النوم","الليل"].forEach(w => add(w, 0));
-            for(let i=1;i<=100;i++) { add(`فراش${i}`,0); add(`نفض${i}`,0); }
-            
+            for(let i=1;i<=80;i++) { add(`فراش${i}`,0); add(`نفض${i}`,0); }
             ["غسل","يغسل","اغسل","غسل اليدين","يد","ايد","كف","بعد النوم","بعد الاستيقاظ","الصباح","استيقظ","قمت"].forEach(w => add(w, 1));
-            for(let i=1;i<=100;i++) { add(`غسل${i}`,1); add(`يد${i}`,1); }
-            
+            for(let i=1;i<=80;i++) { add(`غسل${i}`,1); add(`يد${i}`,1); }
             ["رواتب","الرواتب","سنن رواتب","النوافل","تطوع","قبل الظهر","بعد الظهر","بعد المغرب","بعد العشاء","قبل الفجر"].forEach(w => add(w, 2));
-            for(let i=1;i<=100;i++) add(`رواتب${i}`,2);
-            
+            for(let i=1;i<=80;i++) add(`رواتب${i}`,2);
             ["قيام","قيام الليل","صلاة الليل","تهجد","التهجد","جوف الليل","آخر الليل","السحر"].forEach(w => add(w, 3));
-            for(let i=1;i<=100;i++) add(`ليل${i}`,3);
-            
+            for(let i=1;i<=80;i++) add(`ليل${i}`,3);
             ["ترويح","الترويح","ترويحة","التراويح","استراحة","بين الركعات","رمضان"].forEach(w => add(w, 4));
-            
             ["وتر","الوتر","صلاة الوتر","ركعة وتر","الشفع","القنوت"].forEach(w => add(w, 5));
-            
             ["مسواك","سواك","استاك","السواك","عود","أراك","تنظيف الأسنان"].forEach(w => add(w, 6));
-            
             ["تمر","التمر","تمرات","عجوة","رطب","بلح","اكل التمر","يفطر على تمر","سبع تمرات"].forEach(w => add(w, 7));
-            
             ["اذكار الصباح","أذكار الصباح","صباح","الصباح","اصبحنا","ورد الصباح"].forEach(w => add(w, 8));
-            
             ["اذكار المساء","أذكار المساء","مساء","المساء","أمسينا","ورد المساء"].forEach(w => add(w, 9));
-            
             ["اذكار النوم","أذكار النوم","قبل النوم","آية الكرسي","المعوذات","النوم على الشق الأيمن"].forEach(w => add(w, 10));
-            
             ["استيقاظ","دعاء الاستيقاظ","الحمد لله الذي أحيانا","إليه النشور","صحوت","قمت من النوم"].forEach(w => add(w, 11));
-            
             ["مسح أثر النوم","مسح النوم","يمسح وجهه","مسح الوجه","فرك العينين"].forEach(w => add(w, 12));
-            
             ["تسمية الوضوء","بسم الله الوضوء","التسمية قبل الوضوء","يتوضأ ويسمي"].forEach(w => add(w, 13));
-            
             ["دعاء الوضوء","دعاء بعد الوضوء","بعد الفراغ من الوضوء","أشهد أن لا إله إلا الله","ختم الوضوء"].forEach(w => add(w, 14));
-            
             return map;
         }
-        
         const keywordMap = generateKeywordMap();
         
         function findSunnahByText(text) {
             if (!text) return null;
             const searchText = text.trim().toLowerCase();
-            
-            if (keywordMap.has(searchText)) {
-                return sunnahList[keywordMap.get(searchText)];
-            }
-            
+            if (keywordMap.has(searchText)) return sunnahList[keywordMap.get(searchText)];
             for (let [key, id] of keywordMap.entries()) {
-                if (searchText.includes(key) || key.includes(searchText)) {
-                    return sunnahList[id];
-                }
+                if (searchText.includes(key) || key.includes(searchText)) return sunnahList[id];
             }
             return null;
         }
@@ -383,11 +517,14 @@
         const tasksList = document.getElementById("tasksList");
         const newTaskInput = document.getElementById("newTaskInput");
         const addTaskBtn = document.getElementById("addTaskBtn");
+        const daySelect = document.getElementById("daySelect");
         const toggleBtn = document.getElementById("toggleBtn");
         const body = document.getElementById("body");
+        const daySelector = document.getElementById("daySelector");
         
         let tasks = [];
         let nextId = 1;
+        let currentFilter = 'all';
         
         function showMessage(msg, isError = false) {
             let old = document.querySelector(".toast");
@@ -403,11 +540,11 @@
         }
         
         function saveTasks() {
-            localStorage.setItem("myTasks", JSON.stringify(tasks));
+            localStorage.setItem("weeklyTasks", JSON.stringify(tasks));
         }
         
         function loadTasks() {
-            const saved = localStorage.getItem("myTasks");
+            const saved = localStorage.getItem("weeklyTasks");
             if (saved) {
                 try {
                     tasks = JSON.parse(saved);
@@ -415,114 +552,151 @@
                         nextId = Math.max(...tasks.map(t => t.id)) + 1;
                     }
                     renderTasks();
-                } catch(e) {
-                    tasks = [];
-                    renderTasks();
-                }
-            } else {
-                renderTasks();
-            }
+                } catch(e) { tasks = []; renderTasks(); }
+            } else { renderTasks(); }
+        }
+        
+        function getFilteredTasks() {
+            if (currentFilter === 'all') return tasks;
+            return tasks.filter(t => t.day === currentFilter);
         }
         
         function renderTasks() {
-            if (tasks.length === 0) {
-                tasksList.innerHTML = `<div class="empty-message">لا توجد مهام</div>`;
+            const filtered = getFilteredTasks();
+            if (filtered.length === 0) {
+                tasksList.innerHTML = `<div class="empty-message">لا توجد مهام${currentFilter !== 'all' ? ' في ' + dayNames[currentFilter] : ''}</div>`;
                 return;
             }
             
             tasksList.innerHTML = "";
-            tasks.forEach(task => {
-                const taskDiv = document.createElement("div");
-                taskDiv.className = "task-item";
-                
-                const checkbox = document.createElement("input");
-                checkbox.type = "checkbox";
-                checkbox.className = "task-checkbox";
-                checkbox.checked = task.completed;
-                checkbox.onchange = () => {
-                    task.completed = checkbox.checked;
-                    saveTasks();
-                    renderTasks();
-                };
-                
-                const textSpan = document.createElement("span");
-                textSpan.className = "task-text" + (task.completed ? " completed" : "");
-                textSpan.innerText = task.text;
-                
-                const buttonsDiv = document.createElement("div");
-                buttonsDiv.className = "task-buttons";
-                
-                const deleteBtn = document.createElement("button");
-                deleteBtn.innerText = "حذف";
-                deleteBtn.className = "btn-delete-task";
-                deleteBtn.onclick = () => {
-                    tasks = tasks.filter(t => t.id !== task.id);
-                    saveTasks();
-                    renderTasks();
-                };
-                
-                const suggestBtn = document.createElement("button");
-                suggestBtn.innerText = "اقتراح";
-                suggestBtn.className = "btn-suggest-task";
-                suggestBtn.onclick = () => {
-                    const found = findSunnahByText(task.text);
-                    if (found) {
-                        if (confirm(`السنة المناسبة:\n${found.name}\n${found.text}\n\nهل تريد اضافتها؟`)) {
-                            const newTask = {
-                                id: nextId++,
-                                text: `${found.name} : ${found.text}`,
-                                completed: false
-                            };
-                            tasks.push(newTask);
-                            saveTasks();
-                            renderTasks();
-                            showMessage("تمت الاضافة");
-                        }
-                    } else {
-                        showMessage("لا توجد سنة مرتبطة", true);
+            if (currentFilter === 'all') {
+                const grouped = {};
+                tasks.forEach(t => {
+                    if (!grouped[t.day]) grouped[t.day] = [];
+                    grouped[t.day].push(t);
+                });
+                dayOrder.forEach(day => {
+                    if (grouped[day] && grouped[day].length > 0) {
+                        const header = document.createElement("div");
+                        header.className = "day-header";
+                        header.textContent = `📅 ${dayNames[day]}`;
+                        tasksList.appendChild(header);
+                        grouped[day].forEach(task => renderTaskItem(task));
                     }
-                };
-                
-                buttonsDiv.appendChild(deleteBtn);
-                buttonsDiv.appendChild(suggestBtn);
-                
-                taskDiv.appendChild(checkbox);
-                taskDiv.appendChild(textSpan);
-                taskDiv.appendChild(buttonsDiv);
-                tasksList.appendChild(taskDiv);
-            });
+                });
+            } else {
+                filtered.forEach(task => renderTaskItem(task));
+            }
+        }
+        
+        function renderTaskItem(task) {
+            const taskDiv = document.createElement("div");
+            taskDiv.className = "task-item";
+            
+            const checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+            checkbox.className = "task-checkbox";
+            checkbox.checked = task.completed;
+            checkbox.onchange = () => {
+                task.completed = checkbox.checked;
+                saveTasks();
+                renderTasks();
+            };
+            
+            const textSpan = document.createElement("span");
+            textSpan.className = "task-text" + (task.completed ? " completed" : "");
+            textSpan.innerText = task.text;
+            
+            const dayLabel = document.createElement("span");
+            dayLabel.className = "task-day-label";
+            dayLabel.textContent = dayNames[task.day] || task.day;
+            
+            const buttonsDiv = document.createElement("div");
+            buttonsDiv.className = "task-buttons";
+            
+            const deleteBtn = document.createElement("button");
+            deleteBtn.innerText = "حذف";
+            deleteBtn.className = "btn-delete-task";
+            deleteBtn.onclick = () => {
+                tasks = tasks.filter(t => t.id !== task.id);
+                saveTasks();
+                renderTasks();
+            };
+            
+            const suggestBtn = document.createElement("button");
+            suggestBtn.innerText = "اقتراح";
+            suggestBtn.className = "btn-suggest-task";
+            suggestBtn.onclick = () => {
+                const found = findSunnahByText(task.text);
+                if (found) {
+                    if (confirm(`السنة المناسبة:\n${found.name}\n${found.text}\n\nهل تريد اضافتها؟`)) {
+                        const newTask = {
+                            id: nextId++,
+                            text: `${found.name} : ${found.text}`,
+                            completed: false,
+                            day: task.day || 'saturday'
+                        };
+                        tasks.push(newTask);
+                        saveTasks();
+                        renderTasks();
+                        showMessage("تمت الاضافة");
+                    }
+                } else {
+                    showMessage("لا توجد سنة مرتبطة", true);
+                }
+            };
+            
+            buttonsDiv.appendChild(deleteBtn);
+            buttonsDiv.appendChild(suggestBtn);
+            
+            taskDiv.appendChild(checkbox);
+            taskDiv.appendChild(textSpan);
+            taskDiv.appendChild(dayLabel);
+            taskDiv.appendChild(buttonsDiv);
+            tasksList.appendChild(taskDiv);
         }
         
         function addNewTask() {
             const taskText = newTaskInput.value.trim();
+            const day = daySelect.value;
             if (taskText === "") {
                 showMessage("اكتب المهمة", true);
                 return;
             }
-            
             const newTask = {
                 id: nextId++,
                 text: taskText,
-                completed: false
+                completed: false,
+                day: day
             };
             tasks.push(newTask);
             saveTasks();
             renderTasks();
             newTaskInput.value = "";
             newTaskInput.focus();
+            showMessage(`تمت الاضافة إلى ${dayNames[day]}`);
         }
         
-        // ========== Dark/Light Mode Toggle ==========
+        // ========== أحداث ==========
+        addTaskBtn.addEventListener("click", addNewTask);
+        newTaskInput.addEventListener("keypress", (e) => {
+            if (e.key === "Enter") { e.preventDefault(); addNewTask(); }
+        });
+        
+        document.querySelectorAll('.day-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.day-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentFilter = btn.dataset.day;
+                renderTasks();
+            });
+        });
+        
         function toggleMode() {
             const isDark = body.classList.toggle('dark');
             body.classList.toggle('light');
-            if (isDark) {
-                toggleBtn.textContent = '☀️ الوضع الفاتح';
-                localStorage.setItem('theme', 'dark');
-            } else {
-                toggleBtn.textContent = '🌙 الوضع الداكن';
-                localStorage.setItem('theme', 'light');
-            }
+            toggleBtn.textContent = isDark ? '☀️ الوضع الفاتح' : '🌙 الوضع الداكن';
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
         }
         
         function loadTheme() {
@@ -538,15 +712,7 @@
             }
         }
         
-        addTaskBtn.addEventListener("click", addNewTask);
-        newTaskInput.addEventListener("keypress", (e) => {
-            if (e.key === "Enter") {
-                e.preventDefault();
-                addNewTask();
-            }
-        });
         toggleBtn.addEventListener("click", toggleMode);
-        
         loadTheme();
         loadTasks();
     </script>
