@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>سنن مهجورة</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rakkas&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Rakkas", serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 30px 15px;
+            direction: rtl;
+            transition: all 0.3s ease;
+        }
+        body.light {
+            background: linear-gradient(145deg, #f8fdf9 0%, #eef7f0 100%);
+            color: #1e2f2a;
+        }
+        body.dark {
+            background: linear-gradient(145deg, #0d1117 0%, #161b22 100%);
+            color: #c9d1d9;
+        }
+        
+        h1 {
+            font-size: clamp(1.8rem, 5vw, 3rem);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        body.light h1 { color: #159249; }
+        body.dark h1 { color: #58a6ff; }
+        
+        .btn-toggle {
+            background: none;
+            border: 2px solid;
+            border-radius: 40px;
+            padding: 8px 24px;
+            font-family: "Rubik", sans-serif;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: 0.2s;
+            margin-bottom: 15px;
+        }
+        body.light .btn-toggle {
+            border-color: #159249;
+            color: #159249;
+        }
+        body.light .btn-toggle:hover {
+            background: #159249;
+            color: white;
+        }
+        body.dark .btn-toggle {
+            border-color: #58a6ff;
+            color: #58a6ff;
+        }
+        body.dark .btn-toggle:hover {
+            background: #58a6ff;
+            color: #0d1117;
+        }
+        
+        .add-task-section {
+            border-radius: 28px;
+            padding: 18px;
+            width: 92%;
+            max-width: 550px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+        body.light .add-task-section {
+            background: white;
+            border: 1px solid #e2e8e4;
+        }
+        body.dark .add-task-section {
+            background: #161b22;
+            border: 1px solid #30363d;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+        
+        .add-task-input {
+            width: 100%;
+            padding: 14px 18px;
+            border-radius: 20px;
+            font-size: 1rem;
+            font-family: "Rubik", sans-serif;
+            text-align: center;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+        body.light .add-task-input {
+            border: 2px solid #e2e8e4;
+            background: #fefef8;
+            color: #1e2f2a;
+        }
+        body.light .add-task-input:focus {
+            border-color: #159249;
+            box-shadow: 0 0 0 3px rgba(21, 146, 73, 0.1);
+        }
+        body.dark .add-task-input {
+            border: 2px solid #30363d;
+            background: #0d1117;
+            color: #c9d1d9;
+        }
+        body.dark .add-task-input:focus {
+            border-color: #58a6ff;
+            box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.15);
+        }
+        body.dark .add-task-input::placeholder {
+            color: #8b949e;
+        }
+        
+        .btn-add-task {
+            border: none;
+            border-radius: 60px;
+            padding: 11px 24px;
+            font-size: 1rem;
+            font-family: "Rubik", sans-serif;
+            font-weight: 500;
+            cursor: pointer;
+            margin-top: 12px;
+            width: 100%;
+            transition: all 0.2s;
+        }
+        body.light .btn-add-task {
+            background: #159249;
+            color: white;
+        }
+        body.light .btn-add-task:hover { background: #0d6e3a; transform: translateY(-2px); }
+        body.dark .btn-add-task {
+            background: #238636;
+            color: white;
+        }
+        body.dark .btn-add-task:hover { background: #2ea043; transform: translateY(-2px); }
+        
+        .tasks-list {
+            width: 92%;
+            max-width: 800px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 5px;
+        }
+        .task-item {
+            padding: 12px 16px;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            flex-wrap: wrap;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            font-family: "Rubik", sans-serif;
+            animation: fadeIn 0.25s ease;
+        }
+        body.light .task-item {
+            background: white;
+            border-right: 4px solid #159249;
+        }
+        body.light .task-item:hover { transform: translateX(-3px); background: #fefef8; }
+        body.dark .task-item {
+            background: #161b22;
+            border-right: 4px solid #58a6ff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        body.dark .task-item:hover { transform: translateX(-3px); background: #1c2333; }
+        
+        .task-checkbox {
+            width: 22px;
+            height: 22px;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+        body.light .task-checkbox { accent-color: #159249; }
+        body.dark .task-checkbox { accent-color: #238636; background: #0d1117; }
+        
+        .task-text {
+            font-weight: 500;
+            font-size: 0.95rem;
+            flex: 1;
+            line-height: 1.4;
+            word-break: break-word;
+            transition: all 0.2s;
+        }
+        body.light .task-text { color: #1e2f2a; }
+        body.dark .task-text { color: #c9d1d9; }
+        .task-text.completed {
+            text-decoration: line-through;
+        }
+        body.light .task-text.completed { color: #8a9b8f; }
+        body.dark .task-text.completed { color: #8b949e; }
+        
+        .task-buttons {
+            display: flex;
+            gap: 6px;
+            flex-shrink: 0;
+        }
+        .btn-delete-task, .btn-suggest-task {
+            border: none;
+            border-radius: 30px;
+            padding: 5px 12px;
+            font-size: 0.7rem;
+            font-family: "Rubik", sans-serif;
+            font-weight: 500;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        body.light .btn-delete-task {
+            background: #f1f5f2;
+            color: #d93025;
+        }
+        body.light .btn-delete-task:hover { background: #d93025; color: white; }
+        body.dark .btn-delete-task {
+            background: #21262d;
+            color: #f85149;
+        }
+        body.dark .btn-delete-task:hover { background: #f85149; color: white; }
+        
+        body.light .btn-suggest-task {
+            background: #eef4eb;
+            color: #159249;
+            border: 1px solid #c2dfce;
+        }
+        body.light .btn-suggest-task:hover { background: #159249; color: white; }
+        body.dark .btn-suggest-task {
+            background: #1f2937;
+            color: #58a6ff;
+            border: 1px solid #30363d;
+        }
+        body.dark .btn-suggest-task:hover { background: #58a6ff; color: #0d1117; }
+        
+        .empty-message {
+            text-align: center;
+            font-size: 0.85rem;
+            padding: 30px 15px;
+            border-radius: 28px;
+        }
+        body.light .empty-message {
+            color: #5a7c6b;
+            background: rgba(255,255,255,0.6);
+            border: 2px dashed #bfdbc9;
+        }
+        body.dark .empty-message {
+            color: #8b949e;
+            background: rgba(255,255,255,0.03);
+            border: 2px dashed #30363d;
+        }
+        
+        .toast {
+            position: fixed;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            backdrop-filter: blur(8px);
+            color: white;
+            padding: 6px 18px;
+            border-radius: 40px;
+            font-family: "Rubik", sans-serif;
+            font-size: 0.75rem;
+            z-index: 999;
+            animation: slideUp 0.25s ease;
+            pointer-events: none;
+            white-space: nowrap;
+        }
+        body.light .toast { background: #159249e6; }
+        body.dark .toast { background: #238636e6; }
+        
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes slideUp { from { opacity: 0; transform: translateX(-50%) translateY(15px); } to { opacity: 1; transform: translateX(-50%) translateY(0); } }
+        @media (max-width: 600px) {
+            .task-item { flex-direction: column; text-align: center; }
+            .task-buttons { justify-content: center; margin-top: 6px; }
+            .toast { white-space: normal; text-align: center; max-width: 85%; }
+        }
+    </style>
+</head>
+<body class="light" id="body">
+    <h1>سنن مهجورة</h1>
+    
+    <button class="btn-toggle" id="toggleBtn">🌙 الوضع الداكن</button>
+
+    <div class="add-task-section">
+        <input type="text" class="add-task-input" id="newTaskInput" placeholder="اكتب المهمة..." autocomplete="off">
+        <button class="btn-add-task" id="addTaskBtn">اضافة</button>
+    </div>
+
+    <div class="tasks-list" id="tasksList"></div>
+
+    <script>
+        const sunnahList = [
+            { id: 0, name: "نفض الفراش قبل النوم", text: "نفض الفراش ثلاث مرات قبل النوم مع التسمية" },
+            { id: 1, name: "غسل اليدين بعد النوم", text: "غسل اليدين ثلاثاً عند الاستيقاظ قبل إدخالهما في الإناء" },
+            { id: 2, name: "الرواتب (12 ركعة)", text: "الرواتب: 4 قبل الظهر، 2 بعدها، 2 بعد المغرب، 2 بعد العشاء، 2 قبل الفجر" },
+            { id: 3, name: "قيام الليل", text: "قيام الليل ولو ركعتين في جوف الليل" },
+            { id: 4, name: "الترويح", text: "الترويح بين الركعات في صلاة التراويح" },
+            { id: 5, name: "صلاة الوتر", text: "صلاة الوتر ولو ركعة واحدة آخر الليل" },
+            { id: 6, name: "استعمال السواك", text: "استعمال السواك مع كل وضوء وعند القيام من النوم" },
+            { id: 7, name: "أكل التمر", text: "الإفطار على تمرات أو أكل سبع تمرات عجوة صباحاً" },
+            { id: 8, name: "أذكار الصباح", text: "أذكار الصباح: أصبحنا على فطرة الإسلام" },
+            { id: 9, name: "أذكار المساء", text: "أذكار المساء: أمسينا على فطرة الإسلام" },
+            { id: 10, name: "أذكار النوم", text: "أذكار النوم: آية الكرسي، المعوذات، النوم على الشق الأيمن" },
+            { id: 11, name: "دعاء الاستيقاظ", text: "الحمد لله الذي أحيانا بعد ما أماتنا وإليه النشور" },
+            { id: 12, name: "مسح أثر النوم", text: "مسح أثر النوم عن الوجه باليد عند الاستيقاظ" },
+            { id: 13, name: "التسمية قبل الوضوء", text: "قول بسم الله قبل البدء في الوضوء" },
+            { id: 14, name: "دعاء بعد الوضوء", text: "أشهد أن لا إله إلا الله وحده لا شريك له وأشهد أن محمداً عبده ورسوله" }
+        ];
+        
+        function generateKeywordMap() {
+            const map = new Map();
+            let count = 0;
+            
+            function add(word, id) {
+                if (!word || word.length < 2) return;
+                const key = word.trim().toLowerCase();
+                if (!map.has(key)) {
+                    map.set(key, id);
+                    count++;
+                }
+            }
+            
+            ["فراش","الفراش","فرشة","سرير","نفض","ينفض","انفض","هز","رج","حرك","قبل النوم","عند النوم","الليل"].forEach(w => add(w, 0));
+            for(let i=1;i<=100;i++) { add(`فراش${i}`,0); add(`نفض${i}`,0); }
+            
+            ["غسل","يغسل","اغسل","غسل اليدين","يد","ايد","كف","بعد النوم","بعد الاستيقاظ","الصباح","استيقظ","قمت"].forEach(w => add(w, 1));
+            for(let i=1;i<=100;i++) { add(`غسل${i}`,1); add(`يد${i}`,1); }
+            
+            ["رواتب","الرواتب","سنن رواتب","النوافل","تطوع","قبل الظهر","بعد الظهر","بعد المغرب","بعد العشاء","قبل الفجر"].forEach(w => add(w, 2));
+            for(let i=1;i<=100;i++) add(`رواتب${i}`,2);
+            
+            ["قيام","قيام الليل","صلاة الليل","تهجد","التهجد","جوف الليل","آخر الليل","السحر"].forEach(w => add(w, 3));
+            for(let i=1;i<=100;i++) add(`ليل${i}`,3);
+            
+            ["ترويح","الترويح","ترويحة","التراويح","استراحة","بين الركعات","رمضان"].forEach(w => add(w, 4));
+            
+            ["وتر","الوتر","صلاة الوتر","ركعة وتر","الشفع","القنوت"].forEach(w => add(w, 5));
+            
+            ["مسواك","سواك","استاك","السواك","عود","أراك","تنظيف الأسنان"].forEach(w => add(w, 6));
+            
+            ["تمر","التمر","تمرات","عجوة","رطب","بلح","اكل التمر","يفطر على تمر","سبع تمرات"].forEach(w => add(w, 7));
+            
+            ["اذكار الصباح","أذكار الصباح","صباح","الصباح","اصبحنا","ورد الصباح"].forEach(w => add(w, 8));
+            
+            ["اذكار المساء","أذكار المساء","مساء","المساء","أمسينا","ورد المساء"].forEach(w => add(w, 9));
+            
+            ["اذكار النوم","أذكار النوم","قبل النوم","آية الكرسي","المعوذات","النوم على الشق الأيمن"].forEach(w => add(w, 10));
+            
+            ["استيقاظ","دعاء الاستيقاظ","الحمد لله الذي أحيانا","إليه النشور","صحوت","قمت من النوم"].forEach(w => add(w, 11));
+            
+            ["مسح أثر النوم","مسح النوم","يمسح وجهه","مسح الوجه","فرك العينين"].forEach(w => add(w, 12));
+            
+            ["تسمية الوضوء","بسم الله الوضوء","التسمية قبل الوضوء","يتوضأ ويسمي"].forEach(w => add(w, 13));
+            
+            ["دعاء الوضوء","دعاء بعد الوضوء","بعد الفراغ من الوضوء","أشهد أن لا إله إلا الله","ختم الوضوء"].forEach(w => add(w, 14));
+            
+            return map;
+        }
+        
+        const keywordMap = generateKeywordMap();
+        
+        function findSunnahByText(text) {
+            if (!text) return null;
+            const searchText = text.trim().toLowerCase();
+            
+            if (keywordMap.has(searchText)) {
+                return sunnahList[keywordMap.get(searchText)];
+            }
+            
+            for (let [key, id] of keywordMap.entries()) {
+                if (searchText.includes(key) || key.includes(searchText)) {
+                    return sunnahList[id];
+                }
+            }
+            return null;
+        }
+        
+        const tasksList = document.getElementById("tasksList");
+        const newTaskInput = document.getElementById("newTaskInput");
+        const addTaskBtn = document.getElementById("addTaskBtn");
+        const toggleBtn = document.getElementById("toggleBtn");
+        const body = document.getElementById("body");
+        
+        let tasks = [];
+        let nextId = 1;
+        
+        function showMessage(msg, isError = false) {
+            let old = document.querySelector(".toast");
+            if (old) old.remove();
+            let toast = document.createElement("div");
+            toast.className = "toast";
+            toast.innerText = msg;
+            document.body.appendChild(toast);
+            setTimeout(() => {
+                toast.style.opacity = "0";
+                setTimeout(() => toast.remove(), 300);
+            }, 2000);
+        }
+        
+        function saveTasks() {
+            localStorage.setItem("myTasks", JSON.stringify(tasks));
+        }
+        
+        function loadTasks() {
+            const saved = localStorage.getItem("myTasks");
+            if (saved) {
+                try {
+                    tasks = JSON.parse(saved);
+                    if (tasks.length > 0) {
+                        nextId = Math.max(...tasks.map(t => t.id)) + 1;
+                    }
+                    renderTasks();
+                } catch(e) {
+                    tasks = [];
+                    renderTasks();
+                }
+            } else {
+                renderTasks();
+            }
+        }
+        
+        function renderTasks() {
+            if (tasks.length === 0) {
+                tasksList.innerHTML = `<div class="empty-message">لا توجد مهام</div>`;
+                return;
+            }
+            
+            tasksList.innerHTML = "";
+            tasks.forEach(task => {
+                const taskDiv = document.createElement("div");
+                taskDiv.className = "task-item";
+                
+                const checkbox = document.createElement("input");
+                checkbox.type = "checkbox";
+                checkbox.className = "task-checkbox";
+                checkbox.checked = task.completed;
+                checkbox.onchange = () => {
+                    task.completed = checkbox.checked;
+                    saveTasks();
+                    renderTasks();
+                };
+                
+                const textSpan = document.createElement("span");
+                textSpan.className = "task-text" + (task.completed ? " completed" : "");
+                textSpan.innerText = task.text;
+                
+                const buttonsDiv = document.createElement("div");
+                buttonsDiv.className = "task-buttons";
+                
+                const deleteBtn = document.createElement("button");
+                deleteBtn.innerText = "حذف";
+                deleteBtn.className = "btn-delete-task";
+                deleteBtn.onclick = () => {
+                    tasks = tasks.filter(t => t.id !== task.id);
+                    saveTasks();
+                    renderTasks();
+                };
+                
+                const suggestBtn = document.createElement("button");
+                suggestBtn.innerText = "اقتراح";
+                suggestBtn.className = "btn-suggest-task";
+                suggestBtn.onclick = () => {
+                    const found = findSunnahByText(task.text);
+                    if (found) {
+                        if (confirm(`السنة المناسبة:\n${found.name}\n${found.text}\n\nهل تريد اضافتها؟`)) {
+                            const newTask = {
+                                id: nextId++,
+                                text: `${found.name} : ${found.text}`,
+                                completed: false
+                            };
+                            tasks.push(newTask);
+                            saveTasks();
+                            renderTasks();
+                            showMessage("تمت الاضافة");
+                        }
+                    } else {
+                        showMessage("لا توجد سنة مرتبطة", true);
+                    }
+                };
+                
+                buttonsDiv.appendChild(deleteBtn);
+                buttonsDiv.appendChild(suggestBtn);
+                
+                taskDiv.appendChild(checkbox);
+                taskDiv.appendChild(textSpan);
+                taskDiv.appendChild(buttonsDiv);
+                tasksList.appendChild(taskDiv);
+            });
+        }
+        
+        function addNewTask() {
+            const taskText = newTaskInput.value.trim();
+            if (taskText === "") {
+                showMessage("اكتب المهمة", true);
+                return;
+            }
+            
+            const newTask = {
+                id: nextId++,
+                text: taskText,
+                completed: false
+            };
+            tasks.push(newTask);
+            saveTasks();
+            renderTasks();
+            newTaskInput.value = "";
+            newTaskInput.focus();
+        }
+        
+        // ========== Dark/Light Mode Toggle ==========
+        function toggleMode() {
+            const isDark = body.classList.toggle('dark');
+            body.classList.toggle('light');
+            if (isDark) {
+                toggleBtn.textContent = '☀️ الوضع الفاتح';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                toggleBtn.textContent = '🌙 الوضع الداكن';
+                localStorage.setItem('theme', 'light');
+            }
+        }
+        
+        function loadTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                body.classList.add('dark');
+                body.classList.remove('light');
+                toggleBtn.textContent = '☀️ الوضع الفاتح';
+            } else {
+                body.classList.add('light');
+                body.classList.remove('dark');
+                toggleBtn.textContent = '🌙 الوضع الداكن';
+            }
+        }
+        
+        addTaskBtn.addEventListener("click", addNewTask);
+        newTaskInput.addEventListener("keypress", (e) => {
+            if (e.key === "Enter") {
+                e.preventDefault();
+                addNewTask();
+            }
+        });
+        toggleBtn.addEventListener("click", toggleMode);
+        
+        loadTheme();
+        loadTasks();
+    </script>
+</body>
+</html>

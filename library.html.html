@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>سنن مهجورة - المكتبة</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rakkas&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Rakkas", serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 30px 15px;
+            direction: rtl;
+            transition: all 0.3s ease;
+        }
+        body.light {
+            background: linear-gradient(145deg, #f8fdf9 0%, #eef7f0 100%);
+            color: #1e2f2a;
+        }
+        body.dark {
+            background: linear-gradient(145deg, #0d1117 0%, #161b22 100%);
+            color: #c9d1d9;
+        }
+        
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+            width: 100%;
+            max-width: 600px;
+        }
+        h1 {
+            font-size: clamp(1.6rem, 4vw, 2.5rem);
+            text-align: center;
+        }
+        body.light h1 { color: #159249; }
+        body.dark h1 { color: #58a6ff; }
+        
+        .btn-back {
+            background: none;
+            border: 2px solid;
+            border-radius: 40px;
+            padding: 6px 18px;
+            font-family: "Rubik", sans-serif;
+            font-size: 0.75rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: 0.2s;
+            text-decoration: none;
+        }
+        body.light .btn-back {
+            border-color: #159249;
+            color: #159249;
+        }
+        body.light .btn-back:hover {
+            background: #159249;
+            color: white;
+        }
+        body.dark .btn-back {
+            border-color: #58a6ff;
+            color: #58a6ff;
+        }
+        body.dark .btn-back:hover {
+            background: #58a6ff;
+            color: #0d1117;
+        }
+        
+        .btn-toggle {
+            background: none;
+            border: 2px solid;
+            border-radius: 40px;
+            padding: 6px 18px;
+            font-family: "Rubik", sans-serif;
+            font-size: 0.75rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        body.light .btn-toggle {
+            border-color: #159249;
+            color: #159249;
+        }
+        body.light .btn-toggle:hover {
+            background: #159249;
+            color: white;
+        }
+        body.dark .btn-toggle {
+            border-color: #58a6ff;
+            color: #58a6ff;
+        }
+        body.dark .btn-toggle:hover {
+            background: #58a6ff;
+            color: #0d1117;
+        }
+        
+        .library-section {
+            width: 92%;
+            max-width: 900px;
+            border-radius: 24px;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+        body.light .library-section {
+            background: white;
+            border: 1px solid #e2e8e4;
+        }
+        body.dark .library-section {
+            background: #161b22;
+            border: 1px solid #30363d;
+        }
+        
+        .library-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .library-title {
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+        body.light .library-title { color: #159249; }
+        body.dark .library-title { color: #58a6ff; }
+        
+        .library-stats {
+            font-size: 0.75rem;
+            opacity: 0.7;
+        }
+        
+        .library-search {
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-family: "Rubik", sans-serif;
+            font-size: 0.85rem;
+            outline: none;
+            transition: all 0.3s ease;
+            width: 220px;
+        }
+        body.light .library-search {
+            border: 2px solid #e2e8e4;
+            background: #fefef8;
+            color: #1e2f2a;
+        }
+        body.light .library-search:focus {
+            border-color: #159249;
+        }
+        body.dark .library-search {
+            border: 2px solid #30363d;
+            background: #0d1117;
+            color: #c9d1d9;
+        }
+        body.dark .library-search:focus {
+            border-color: #58a6ff;
+        }
+        body.dark .library-search::placeholder {
+            color: #8b949e;
+        }
+        
+        .library-tabs {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+        .tab-btn {
+            border: none;
+            border-radius: 30px;
+            padding: 5px 14px;
+            font-family: "Rubik", sans-serif;
+            font-size: 0.7rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        body.light .tab-btn {
+            background: #eef7f0;
+            color: #1e2f2a;
+        }
+        body.light .tab-btn:hover { background: #d4e8da; }
+        body.light .tab-btn.active {
+            background: #159249;
+            color: white;
+        }
+        body.dark .tab-btn {
+            background: #21262d;
+            color: #c9d1d9;
+        }
+        body.dark .tab-btn:hover { background: #30363d; }
+        body.dark .tab-btn.active {
+            background: #238636;
+            color: white;
+        }
+        
+        .library-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 12px;
+        }
+        .library-item {
+            padding: 14px 16px;
+            border-radius: 16px;
+            transition: all 0.2s;
+            font-family: "Rubik", sans-serif;
+            border: 2px solid transparent;
+            position: relative;
+        }
+        body.light .library-item {
+            background: #f5faf7;
+            color: #1e2f2a;
+        }
+        body.light .library-item:hover {
+            background: #d4e8da;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        body.dark .library-item {
+            background: #1c2333;
+            color: #c9d1d9;
+        }
+        body.dark .library-item:hover {
+            background: #30363d;
+            transform: translateY(-3px);
+        }
+        
+        .library-item .sunnah-icon {
+            font-size: 1.4rem;
+        }
+        .library-item .sunnah-name {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin: 4px 0;
+        }
+        .library-item .sunnah-desc {
+            font-size: 0.7rem;
+            opacity: 0.7;
+            line-height: 1.4;
+        }
+        .library-item .sunnah-category {
+            font-size: 0.6rem;
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 20px;
+            margin-top: 6px;
+        }
+        body.light .library-item .sunnah-category {
+            background: #eef7f0;
+            color: #159249;
+        }
+        body.dark .library-item .sunnah-category {
+            background: #21262d;
+            color: #58a6ff;
+        }
+        
+        .empty-message {
+            text-align: center;
+            font-size: 0.9rem;
+            padding: 40px 20px;
+            border-radius: 20px;
+            grid-column: 1/-1;
+        }
+        body.light .empty-message {
+            color: #5a7c6b;
+            background: rgba(255,255,255,0.6);
+            border: 2px dashed #bfdbc9;
+        }
+        body.dark .empty-message {
+            color: #8b949e;
+            background: rgba(255,255,255,0.03);
+            border: 2px dashed #30363d;
+        }
+        
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            backdrop-filter: blur(8px);
+            color: white;
+            padding: 6px 20px;
+            border-radius: 40px;
+            font-family: "Rubik", sans-serif;
+            font-size: 0.75rem;
+            z-index: 999;
+            animation: slideUp 0.25s ease;
+            pointer-events: none;
+            white-space: nowrap;
+        }
+        body.light .toast { background: #159249e6; }
+        body.dark .toast { background: #238636e6; }
+        
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes slideUp { from { opacity: 0; transform: translateX(-50%) translateY(15px); } to { opacity: 1; transform: translateX(-50%) translateY(0); } }
+        @media (max-width: 600px) {
+            .library-grid { grid-template-columns: 1fr; }
+            .library-search { width: 100%; }
+            .header { flex-direction: column; align-items: center; }
+            .toast { white-space: normal; text-align: center; max-width: 85%; }
+        }
+    </style>
+</head>
+<body class="light" id="body">
+    <div class="header">
+        <a href="javascript:history.back()" class="btn-back">⬅ رجوع</a>
+        <h1>📚 مكتبة السنن</h1>
+        <button class="btn-toggle" id="toggleBtn">🌙 الوضع الداكن</button>
+    </div>
+
+    <div class="library-section">
+        <div class="library-header">
+            <div>
+                <span class="library-title">📖 جميع السنن</span>
+                <span class="library-stats" id="stats"></span>
+            </div>
+            <input type="text" class="library-search" id="librarySearch" placeholder="🔍 بحث في المكتبة...">
+        </div>
+        
+        <div class="library-tabs" id="tabsContainer">
+            <button class="tab-btn active" data-category="all">الكل</button>
+            <button class="tab-btn" data-category="sleep">🛏️ النوم</button>
+            <button class="tab-btn" data-category="prayer">🕌 الصلاة</button>
+            <button class="tab-btn" data-category="wudu">💧 الوضوء</button>
+            <button class="tab-btn" data-category="dhikr">📿 الأذكار</button>
+            <button class="tab-btn" data-category="food">🍽️ الطعام</button>
+            <button class="tab-btn" data-category="other">🌿 أخرى</button>
+        </div>
+        
+        <div class="library-grid" id="libraryGrid"></div>
+    </div>
+
+    <script>
+        // ===== مكتبة السنن الكاملة =====
+        const sunnahLibrary = [
+            // النوم
+            { id: 0, name: "نفض الفراش قبل النوم", desc: "نفض الفراش ثلاث مرات قبل النوم مع التسمية", category: "sleep", icon: "🛏️" },
+            { id: 1, name: "غسل اليدين بعد النوم", desc: "غسل اليدين ثلاثاً عند الاستيقاظ قبل إدخالهما في الإناء", category: "sleep", icon: "🧼" },
+            { id: 2, name: "أذكار النوم", desc: "آية الكرسي، المعوذات، النوم على الشق الأيمن", category: "sleep", icon: "😴" },
+            { id: 3, name: "دعاء الاستيقاظ", desc: "الحمد لله الذي أحيانا بعد ما أماتنا وإليه النشور", category: "sleep", icon: "🌅" },
+            { id: 4, name: "مسح أثر النوم", desc: "مسح أثر النوم عن الوجه باليد عند الاستيقاظ", category: "sleep", icon: "💧" },
+            
+            // الصلاة
+            { id: 5, name: "الرواتب (12 ركعة)", desc: "4 قبل الظهر، 2 بعدها، 2 بعد المغرب، 2 بعد العشاء، 2 قبل الفجر", category: "prayer", icon: "🕌" },
+            { id: 6, name: "قيام الليل", desc: "قيام الليل ولو ركعتين في جوف الليل", category: "prayer", icon: "🌙" },
+            { id: 7, name: "صلاة الوتر", desc: "صلاة الوتر ولو ركعة واحدة آخر الليل", category: "prayer", icon: "🤲" },
+            { id: 8, name: "الترويح", desc: "الترويح بين الركعات في صلاة التراويح", category: "prayer", icon: "🌿" },
+            { id: 9, name: "صلاة الضحى", desc: "ركعتان بعد شروق الشمس تعدل صدقة", category: "prayer", icon: "☀️" },
+            { id: 10, name: "قراءة سورة الكهف", desc: "قراءة سورة الكهف يوم الجمعة", category: "prayer", icon: "📖" },
+            { id: 11, name: "دعاء القنوت", desc: "القنوت في صلاة الوتر", category: "prayer", icon: "🤲" },
+            
+            // الوضوء
+            { id: 12, name: "استعمال السواك", desc: "استعمال السواك مع كل وضوء وعند القيام من النوم", category: "wudu", icon: "🌿" },
+            { id: 13, name: "التسمية قبل الوضوء", desc: "قول بسم الله قبل البدء في الوضوء", category: "wudu", icon: "💧" },
+            { id: 14, name: "دعاء بعد الوضوء", desc: "أشهد أن لا إله إلا الله وحده لا شريك له", category: "wudu", icon: "💧" },
+            
+            // الأذكار
+            { id: 15, name: "أذكار الصباح", desc: "أذكار الصباح: أصبحنا على فطرة الإسلام", category: "dhikr", icon: "🌅" },
+            { id: 16, name: "أذكار المساء", desc: "أذكار المساء: أمسينا على فطرة الإسلام", category: "dhikr", icon: "🌙" },
+            { id: 17, name: "الاستغفار", desc: "الاستغفار 100 مرة في اليوم: رب اغفر لي وتب علي", category: "dhikr", icon: "💚" },
+            { id: 18, name: "التسبيح بعد الصلاة", desc: "سبحان الله 33، الحمد لله 33، الله أكبر 34", category: "dhikr", icon: "📿" },
+            
+            // الطعام
+            { id: 19, name: "أكل التمر", desc: "الإفطار على تمرات أو أكل سبع تمرات عجوة صباحاً", category: "food", icon: "🍂" },
+            { id: 20, name: "التسمية قبل الأكل", desc: "قول بسم الله قبل الطعام", category: "food", icon: "🍽️" },
+            { id: 21, name: "الأكل باليمين", desc: "الأكل والشرب باليد اليمنى", category: "food", icon: "✋" },
+            { id: 22, name: "الشرب جالساً", desc: "الشرب جالساً وعلى ثلاث مرات", category: "food", icon: "🧃" },
+            
+            // أخرى
+            { id: 23, name: "التبسم في وجه أخيك", desc: "التبسم في وجه أخيك المسلم صدقة", category: "other", icon: "😊" },
+            { id: 24, name: "إفشاء السلام", desc: "إفشاء السلام بين المسلمين ورده بأحسن منه", category: "other", icon: "🕊️" },
+            { id: 25, name: "عيادة المريض", desc: "عيادة المريض والدعاء له بالشفاء", category: "other", icon: "🏥" },
+            { id: 26, name: "صلة الرحم", desc: "صلة الرحم وتفقد الأقارب", category: "other", icon: "🌺" },
+            { id: 27, name: "الصدقة", desc: "الصدقة ولو بشق تمرة أو كلمة طيبة", category: "other", icon: "🤲" }
+        ];
+
+        // ===== توليد الكلمات المفتاحية للبحث =====
+        function generateKeywordMap() {
+            const map = new Map();
+            function add(word, id) {
+                if (!word || word.length < 1) return;
+                const key = word.trim().toLowerCase();
+                if (!map.has(key)) map.set(key, id);
+            }
+            sunnahLibrary.forEach(s => {
+                s.name.split(' ').forEach(w => add(w, s.id));
+                s.desc.split(' ').forEach(w => add(w, s.id));
+            });
+            // كلمات إضافية شائعة
+            ["فراش","نفض","سرير","يدين","غسل","وضوء","رواتب","قيام","ليل","ترويح","وتر","مسواك","سواك","تمر","أذكار","صباح","مساء","نوم","استيقاظ","صلاة","دعاء","صدقة","سلام","رحم","تبسم"].forEach(w => add(w, 0));
+            return map;
+        }
+        const keywordMap = generateKeywordMap();
+
+        // ===== عناصر الواجهة =====
+        const grid = document.getElementById("libraryGrid");
+        const searchInput = document.getElementById("librarySearch");
+        const statsSpan = document.getElementById("stats");
+        const tabsContainer = document.getElementById("tabsContainer");
+        const toggleBtn = document.getElementById("toggleBtn");
+        const body = document.getElementById("body");
+
+        let currentCategory = 'all';
+        let currentSearch = '';
+
+        function renderLibrary() {
+            const search = currentSearch.toLowerCase().trim();
+            let items = sunnahLibrary;
+            
+            // تصفية حسب التصنيف
+            if (currentCategory !== 'all') {
+                items = items.filter(s => s.category === currentCategory);
+            }
+            
+            // تصفية حسب البحث
+            if (search) {
+                items = items.filter(s => 
+                    s.name.toLowerCase().includes(search) || 
+                    s.desc.toLowerCase().includes(search)
+                );
+            }
+            
+            // تحديث الإحصائيات
+            statsSpan.textContent = `(${items.length} سنة)`;
+            
+            if (items.length === 0) {
+                grid.innerHTML = `<div class="empty-message">📭 لا توجد سنن تطابق بحثك</div>`;
+                return;
+            }
+            
+            grid.innerHTML = '';
+            items.forEach(s => {
+                const div = document.createElement('div');
+                div.className = 'library-item';
+                const catNames = {
+                    sleep: 'النوم', prayer: 'الصلاة', wudu: 'الوضوء',
+                    dhikr: 'الأذكار', food: 'الطعام', other: 'أخرى'
+                };
+                div.innerHTML = `
+                    <div class="sunnah-icon">${s.icon}</div>
+                    <div class="sunnah-name">${s.name}</div>
+                    <div class="sunnah-desc">${s.desc}</div>
+                    <span class="sunnah-category">${catNames[s.category] || s.category}</span>
+                `;
+                // عند النقر على السنة، نسخها إلى الحافظة
+                div.onclick = () => {
+                    const text = `${s.icon} ${s.name} : ${s.desc}`;
+                    if (navigator.clipboard && navigator.clipboard.writeText) {
+                        navigator.clipboard.writeText(text).then(() => {
+                            showToast(`📋 تم نسخ: ${s.name}`);
+                        }).catch(() => {
+                            fallbackCopy(text);
+                        });
+                    } else {
+                        fallbackCopy(text);
+                    }
+                };
+                grid.appendChild(div);
+            });
+        }
+
+        // نسخ احتياطي
+        function fallbackCopy(text) {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            textarea.style.position = 'fixed';
+            textarea.style.opacity = '0';
+            document.body.appendChild(textarea);
+            textarea.select();
+            try {
+                document.execCommand('copy');
+                showToast(`📋 تم نسخ: ${text.substring(0, 30)}...`);
+            } catch(e) {
+                showToast('⚠️ تعذر النسخ، الرجاء النسخ يدوياً', true);
+            }
+            document.body.removeChild(textarea);
+        }
+
+        function showToast(msg, isError = false) {
+            let old = document.querySelector('.toast');
+            if (old) old.remove();
+            let toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.textContent = msg;
+            document.body.appendChild(toast);
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                setTimeout(() => toast.remove(), 300);
+            }, 2000);
+        }
+
+        // ===== أحداث =====
+        searchInput.addEventListener('input', (e) => {
+            currentSearch = e.target.value;
+            renderLibrary();
+        });
+
+        // أزرار التصنيفات
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentCategory = btn.dataset.category;
+                renderLibrary();
+            });
+        });
+
+        // ===== الوضع الداكن =====
+        function toggleMode() {
+            const isDark = body.classList.toggle('dark');
+            body.classList.toggle('light');
+            toggleBtn.textContent = isDark ? '☀️ الوضع الفاتح' : '🌙 الوضع الداكن';
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        }
+
+        function loadTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                body.classList.add('dark');
+                body.classList.remove('light');
+                toggleBtn.textContent = '☀️ الوضع الفاتح';
+            } else {
+                body.classList.add('light');
+                body.classList.remove('dark');
+                toggleBtn.textContent = '🌙 الوضع الداكن';
+            }
+        }
+
+        toggleBtn.addEventListener('click', toggleMode);
+        loadTheme();
+        renderLibrary();
+    </script>
+</body>
+</html>
