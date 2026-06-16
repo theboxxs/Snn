@@ -31,12 +31,12 @@
         .header {
             display: flex;
             align-items: center;
-            gap: 15px;
-            margin-bottom: 20px;
+            gap: 10px;
+            margin-bottom: 15px;
             flex-wrap: wrap;
             justify-content: center;
             width: 100%;
-            max-width: 600px;
+            max-width: 700px;
         }
         h1 {
             font-size: clamp(1.8rem, 5vw, 3rem);
@@ -93,9 +93,9 @@
         }
         .nav-card {
             flex: 1;
-            min-width: 160px;
-            max-width: 220px;
-            padding: 25px 20px;
+            min-width: 140px;
+            max-width: 200px;
+            padding: 20px 15px;
             border-radius: 24px;
             text-align: center;
             text-decoration: none;
@@ -123,27 +123,130 @@
             border-color: #58a6ff;
         }
         
-        .nav-card .icon {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            display: block;
+        .nav-card .icon { font-size: 2rem; display: block; margin-bottom: 6px; }
+        .nav-card .title { font-size: 1rem; font-weight: 600; }
+        .nav-card .desc { font-size: 0.65rem; opacity: 0.7; margin-top: 4px; }
+        
+        /* ===== قسم الإحصائيات ===== */
+        .stats-section {
+            width: 92%;
+            max-width: 700px;
+            border-radius: 24px;
+            padding: 18px 20px;
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
         }
-        .nav-card .title {
-            font-size: 1.1rem;
-            font-weight: 600;
+        body.light .stats-section {
+            background: white;
+            border: 1px solid #e2e8e4;
         }
-        .nav-card .desc {
-            font-size: 0.75rem;
-            opacity: 0.7;
-            margin-top: 5px;
+        body.dark .stats-section {
+            background: #161b22;
+            border: 1px solid #30363d;
         }
         
-        /* ===== قسم التنظيم الأسبوعي المختصر ===== */
+        .stats-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .stats-title {
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+        body.light .stats-title { color: #159249; }
+        body.dark .stats-title { color: #58a6ff; }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+        .stat-card {
+            padding: 12px 8px;
+            border-radius: 14px;
+            text-align: center;
+            transition: all 0.2s;
+        }
+        body.light .stat-card {
+            background: #f5faf7;
+            border: 1px solid #e2e8e4;
+        }
+        body.dark .stat-card {
+            background: #1c2333;
+            border: 1px solid #30363d;
+        }
+        .stat-card .stat-number {
+            font-size: 1.6rem;
+            font-weight: 700;
+        }
+        body.light .stat-card .stat-number { color: #159249; }
+        body.dark .stat-card .stat-number { color: #58a6ff; }
+        .stat-card .stat-label {
+            font-size: 0.65rem;
+            opacity: 0.7;
+            margin-top: 2px;
+        }
+        .stat-card .stat-icon { font-size: 1.2rem; display: block; margin-bottom: 2px; }
+        
+        .stats-chart-section {
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid;
+        }
+        body.light .stats-chart-section { border-color: #e2e8e4; }
+        body.dark .stats-chart-section { border-color: #30363d; }
+        
+        .chart-title {
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+        body.light .chart-title { color: #159249; }
+        body.dark .chart-title { color: #58a6ff; }
+        
+        .chart-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 4px;
+        }
+        .chart-label {
+            font-size: 0.65rem;
+            min-width: 50px;
+            text-align: left;
+        }
+        .chart-bar-bg {
+            flex: 1;
+            height: 16px;
+            border-radius: 10px;
+            overflow: hidden;
+            background: #e2e8e4;
+        }
+        body.dark .chart-bar-bg { background: #30363d; }
+        .chart-bar-fill {
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.8s ease;
+            background: linear-gradient(90deg, #159249, #2ea043);
+        }
+        body.dark .chart-bar-fill { background: linear-gradient(90deg, #238636, #58a6ff); }
+        .chart-percent {
+            font-size: 0.6rem;
+            min-width: 35px;
+            text-align: center;
+        }
+        
+        /* ===== معاينة المهام ===== */
         .weekly-preview {
             width: 92%;
             max-width: 700px;
             border-radius: 24px;
-            padding: 20px;
+            padding: 18px 20px;
             transition: all 0.3s ease;
             margin-bottom: 15px;
         }
@@ -160,12 +263,12 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 8px;
         }
         .weekly-title {
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: 500;
         }
         body.light .weekly-title { color: #159249; }
@@ -200,15 +303,15 @@
         }
         
         .task-item-preview {
-            padding: 8px 12px;
-            border-radius: 12px;
+            padding: 6px 10px;
+            border-radius: 10px;
             display: flex;
             align-items: center;
-            gap: 10px;
-            margin-bottom: 6px;
+            gap: 8px;
+            margin-bottom: 4px;
             transition: all 0.2s;
             font-family: "Rubik", sans-serif;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
         }
         body.light .task-item-preview {
             background: #f8fdf9;
@@ -217,8 +320,8 @@
             background: #0d1117;
         }
         .task-item-preview .day-label {
-            font-size: 0.6rem;
-            padding: 2px 10px;
+            font-size: 0.55rem;
+            padding: 2px 8px;
             border-radius: 20px;
         }
         body.light .task-item-preview .day-label {
@@ -229,18 +332,14 @@
             background: #21262d;
             color: #58a6ff;
         }
-        .task-item-preview .task-text {
-            flex: 1;
-        }
-        .task-item-preview .task-status {
-            font-size: 0.8rem;
-        }
+        .task-item-preview .task-text { flex: 1; }
+        .task-item-preview .task-status { font-size: 0.7rem; }
         
         .empty-message {
             text-align: center;
-            font-size: 0.8rem;
-            padding: 20px;
-            border-radius: 16px;
+            font-size: 0.75rem;
+            padding: 15px;
+            border-radius: 14px;
         }
         body.light .empty-message {
             color: #5a7c6b;
@@ -279,7 +378,9 @@
         @media (max-width: 600px) {
             .nav-cards { flex-direction: column; align-items: center; }
             .nav-card { max-width: 100%; width: 100%; }
+            .stats-grid { grid-template-columns: 1fr 1fr 1fr; }
             .toast { white-space: normal; text-align: center; max-width: 85%; }
+            .header { flex-direction: column; align-items: center; }
         }
     </style>
 </head>
@@ -288,27 +389,78 @@
         <h1>📿 سنن مهجورة</h1>
         <button class="btn-toggle" id="toggleBtn">🌙 الوضع الداكن</button>
     </div>
-    <div class="sub">📅 تنظيم أسبوعي للسنن والمهام | 📚 مكتبة متكاملة للسنن</div>
+    <div class="sub">📅 تنظيم أسبوعي للسنن والمهام | 📚 مكتبة متكاملة</div>
 
     <!-- بطاقات التنقل -->
     <div class="nav-cards">
-        <a href="javascript:void(0)" class="nav-card" id="goToTasks">
+        <a href="tasks.html" class="nav-card">
             <span class="icon">📋</span>
-            <div class="title">المهام الأسبوعية</div>
-            <div class="desc">إدارة مهامك اليومية والأسبوعية</div>
+            <div class="title">المهام</div>
+            <div class="desc">إدارة مهامك اليومية</div>
         </a>
-        <a href="javascript:void(0)" class="nav-card" id="goToLibrary">
+        <a href="library.html" class="nav-card">
             <span class="icon">📚</span>
-            <div class="title">مكتبة السنن</div>
-            <div class="desc">استعراض جميع السنن وتصنيفاتها</div>
+            <div class="title">المكتبة</div>
+            <div class="desc">استعراض جميع السنن</div>
+        </a>
+        <a href="stats.html" class="nav-card" style="border-color:#159249; background:#15924910;">
+            <span class="icon">📊</span>
+            <div class="title">الإحصائيات</div>
+            <div class="desc">تحليل التقدم والإنجاز</div>
         </a>
     </div>
 
-    <!-- معاينة المهام الأسبوعية -->
+    <!-- ===== الإحصائيات ===== -->
+    <div class="stats-section">
+        <div class="stats-header">
+            <span class="stats-title">📈 إحصائيات سريعة</span>
+            <span style="font-size:0.65rem; opacity:0.6;" id="updateTime"></span>
+        </div>
+
+        <div class="stats-grid" id="statsGrid">
+            <div class="stat-card">
+                <span class="stat-icon">📋</span>
+                <div class="stat-number" id="totalTasks">0</div>
+                <div class="stat-label">المهام</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-icon">✅</span>
+                <div class="stat-number" id="completedTasks">0</div>
+                <div class="stat-label">مكتملة</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-icon">📊</span>
+                <div class="stat-number" id="completionRate">0%</div>
+                <div class="stat-label">نسبة الإنجاز</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-icon">⏳</span>
+                <div class="stat-number" id="pendingTasks">0</div>
+                <div class="stat-label">متبقية</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-icon">📚</span>
+                <div class="stat-number" id="totalSunnah">0</div>
+                <div class="stat-label">السنن</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-icon">📅</span>
+                <div class="stat-number" id="daysActive">0</div>
+                <div class="stat-label">أيام نشطة</div>
+            </div>
+        </div>
+
+        <div class="stats-chart-section">
+            <div class="chart-title">📊 توزيع المهام حسب اليوم</div>
+            <div id="dayChart"></div>
+        </div>
+    </div>
+
+    <!-- معاينة المهام -->
     <div class="weekly-preview">
         <div class="weekly-header">
             <span class="weekly-title">📅 مهام هذا الأسبوع</span>
-            <a href="javascript:void(0)" class="btn-view-all" id="goToTasksFull">عرض الكل</a>
+            <a href="tasks.html" class="btn-view-all">عرض الكل</a>
         </div>
         <div id="previewTasks"></div>
     </div>
@@ -320,28 +472,125 @@
         };
         const dayOrder = ['saturday', 'sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday'];
 
-        // ===== تحميل المهام من localStorage =====
+        // ===== مكتبة السنن =====
+        const sunnahLibrary = [
+            { id: 0, name: "نفض الفراش قبل النوم", desc: "نفض الفراش ثلاث مرات قبل النوم مع التسمية", category: "sleep" },
+            { id: 1, name: "غسل اليدين بعد النوم", desc: "غسل اليدين ثلاثاً عند الاستيقاظ قبل إدخالهما في الإناء", category: "sleep" },
+            { id: 2, name: "أذكار النوم", desc: "آية الكرسي، المعوذات، النوم على الشق الأيمن", category: "sleep" },
+            { id: 3, name: "دعاء الاستيقاظ", desc: "الحمد لله الذي أحيانا بعد ما أماتنا وإليه النشور", category: "sleep" },
+            { id: 4, name: "مسح أثر النوم", desc: "مسح أثر النوم عن الوجه باليد عند الاستيقاظ", category: "sleep" },
+            { id: 5, name: "الرواتب (12 ركعة)", desc: "4 قبل الظهر، 2 بعدها، 2 بعد المغرب، 2 بعد العشاء، 2 قبل الفجر", category: "prayer" },
+            { id: 6, name: "قيام الليل", desc: "قيام الليل ولو ركعتين في جوف الليل", category: "prayer" },
+            { id: 7, name: "صلاة الوتر", desc: "صلاة الوتر ولو ركعة واحدة آخر الليل", category: "prayer" },
+            { id: 8, name: "الترويح", desc: "الترويح بين الركعات في صلاة التراويح", category: "prayer" },
+            { id: 9, name: "صلاة الضحى", desc: "ركعتان بعد شروق الشمس تعدل صدقة", category: "prayer" },
+            { id: 10, name: "قراءة سورة الكهف", desc: "قراءة سورة الكهف يوم الجمعة", category: "prayer" },
+            { id: 11, name: "دعاء القنوت", desc: "القنوت في صلاة الوتر", category: "prayer" },
+            { id: 12, name: "استعمال السواك", desc: "استعمال السواك مع كل وضوء وعند القيام من النوم", category: "wudu" },
+            { id: 13, name: "التسمية قبل الوضوء", desc: "قول بسم الله قبل البدء في الوضوء", category: "wudu" },
+            { id: 14, name: "دعاء بعد الوضوء", desc: "أشهد أن لا إله إلا الله وحده لا شريك له", category: "wudu" },
+            { id: 15, name: "أذكار الصباح", desc: "أذكار الصباح: أصبحنا على فطرة الإسلام", category: "dhikr" },
+            { id: 16, name: "أذكار المساء", desc: "أذكار المساء: أمسينا على فطرة الإسلام", category: "dhikr" },
+            { id: 17, name: "الاستغفار", desc: "الاستغفار 100 مرة في اليوم: رب اغفر لي وتب علي", category: "dhikr" },
+            { id: 18, name: "التسبيح بعد الصلاة", desc: "سبحان الله 33، الحمد لله 33، الله أكبر 34", category: "dhikr" },
+            { id: 19, name: "أكل التمر", desc: "الإفطار على تمرات أو أكل سبع تمرات عجوة صباحاً", category: "food" },
+            { id: 20, name: "التسمية قبل الأكل", desc: "قول بسم الله قبل الطعام", category: "food" },
+            { id: 21, name: "الأكل باليمين", desc: "الأكل والشرب باليد اليمنى", category: "food" },
+            { id: 22, name: "الشرب جالساً", desc: "الشرب جالساً وعلى ثلاث مرات", category: "food" },
+            { id: 23, name: "التبسم في وجه أخيك", desc: "التبسم في وجه أخيك المسلم صدقة", category: "other" },
+            { id: 24, name: "إفشاء السلام", desc: "إفشاء السلام بين المسلمين ورده بأحسن منه", category: "other" },
+            { id: 25, name: "عيادة المريض", desc: "عيادة المريض والدعاء له بالشفاء", category: "other" },
+            { id: 26, name: "صلة الرحم", desc: "صلة الرحم وتفقد الأقارب", category: "other" },
+            { id: 27, name: "الصدقة", desc: "الصدقة ولو بشق تمرة أو كلمة طيبة", category: "other" }
+        ];
+
+        // ===== تحميل المهام =====
         function loadTasks() {
             const saved = localStorage.getItem("weeklyTasks");
             if (saved) {
-                try {
-                    return JSON.parse(saved);
-                } catch(e) { return []; }
+                try { return JSON.parse(saved); } catch(e) { return []; }
             }
             return [];
         }
 
+        // ===== حساب الإحصائيات =====
+        function calculateStats() {
+            const tasks = loadTasks();
+            const total = tasks.length;
+            const completed = tasks.filter(t => t.completed).length;
+            const pending = total - completed;
+            const rate = total === 0 ? 0 : Math.round((completed / total) * 100);
+            
+            const days = new Set(tasks.map(t => t.day));
+            const daysActive = days.size;
+            
+            const dayStats = {};
+            dayOrder.forEach(d => { dayStats[d] = { total: 0, completed: 0 }; });
+            tasks.forEach(t => {
+                if (dayStats[t.day]) {
+                    dayStats[t.day].total++;
+                    if (t.completed) dayStats[t.day].completed++;
+                }
+            });
+            
+            document.getElementById('totalTasks').textContent = total;
+            document.getElementById('completedTasks').textContent = completed;
+            document.getElementById('pendingTasks').textContent = pending;
+            document.getElementById('completionRate').textContent = total === 0 ? '0%' : rate + '%';
+            document.getElementById('totalSunnah').textContent = sunnahLibrary.length;
+            document.getElementById('daysActive').textContent = daysActive;
+            document.getElementById('updateTime').textContent = new Date().toLocaleTimeString('ar-EG');
+            
+            renderDayChart(dayStats);
+        }
+
+        function renderDayChart(dayStats) {
+            const container = document.getElementById('dayChart');
+            container.innerHTML = '';
+            const maxTotal = Math.max(1, ...Object.values(dayStats).map(d => d.total));
+            
+            dayOrder.forEach(day => {
+                const stats = dayStats[day] || { total: 0, completed: 0 };
+                const total = stats.total;
+                const completedCount = stats.completed;
+                const pct = maxTotal === 0 ? 0 : Math.round((total / maxTotal) * 100);
+                
+                const row = document.createElement('div');
+                row.className = 'chart-row';
+                const label = document.createElement('span');
+                label.className = 'chart-label';
+                label.textContent = dayNames[day];
+                const barBg = document.createElement('div');
+                barBg.className = 'chart-bar-bg';
+                const barFill = document.createElement('div');
+                barFill.className = 'chart-bar-fill';
+                barFill.style.width = pct + '%';
+                if (total > 0 && completedCount === total) {
+                    barFill.style.background = 'linear-gradient(90deg, #2ea043, #56d364)';
+                } else if (total > 0) {
+                    barFill.style.background = 'linear-gradient(90deg, #159249, #2ea043)';
+                }
+                const percent = document.createElement('span');
+                percent.className = 'chart-percent';
+                percent.textContent = total > 0 ? `${total} (${Math.round((completedCount/total)*100)}%)` : '0';
+                barBg.appendChild(barFill);
+                row.appendChild(label);
+                row.appendChild(barBg);
+                row.appendChild(percent);
+                container.appendChild(row);
+            });
+        }
+
         // ===== عرض معاينة المهام =====
         function renderPreview() {
-            const container = document.getElementById("previewTasks");
+            const container = document.getElementById('previewTasks');
             const tasks = loadTasks();
             
             if (tasks.length === 0) {
-                container.innerHTML = `<div class="empty-message">🌿 لا توجد مهام بعد... أضف مهامك في صفحة المهام الأسبوعية</div>`;
+                container.innerHTML = `<div class="empty-message">🌿 لا توجد مهام بعد... أضف مهامك في صفحة المهام</div>`;
                 return;
             }
             
-            // عرض آخر 5 مهام (الأحدث)
             const recent = tasks.slice(-5).reverse();
             container.innerHTML = '';
             recent.forEach(task => {
@@ -352,25 +601,15 @@
                 dayLabel.textContent = dayNames[task.day] || task.day;
                 const textSpan = document.createElement('span');
                 textSpan.className = 'task-text';
-                textSpan.textContent = task.text.length > 40 ? task.text.substring(0, 40) + '...' : task.text;
+                textSpan.textContent = task.text.length > 35 ? task.text.substring(0, 35) + '...' : task.text;
                 const statusSpan = document.createElement('span');
                 statusSpan.className = 'task-status';
                 statusSpan.textContent = task.completed ? '✅' : '⏳';
-                
                 div.appendChild(dayLabel);
                 div.appendChild(textSpan);
                 div.appendChild(statusSpan);
                 container.appendChild(div);
             });
-        }
-
-        // ===== التنقل بين الصفحات =====
-        function showPage(page) {
-            if (page === 'tasks') {
-                window.location.href = 'tasks.html';
-            } else if (page === 'library') {
-                window.location.href = 'library.html';
-            }
         }
 
         // ===== الوضع الداكن =====
@@ -394,14 +633,11 @@
             }
         }
 
-        // ===== أحداث =====
-        document.getElementById('goToTasks').addEventListener('click', () => showPage('tasks'));
-        document.getElementById('goToTasksFull').addEventListener('click', () => showPage('tasks'));
-        document.getElementById('goToLibrary').addEventListener('click', () => showPage('library'));
         toggleBtn.addEventListener('click', toggleMode);
-        
         loadTheme();
+        calculateStats();
         renderPreview();
+        setInterval(calculateStats, 30000);
     </script>
 </body>
 </html>
